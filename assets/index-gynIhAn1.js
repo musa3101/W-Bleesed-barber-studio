@@ -26547,7 +26547,8 @@ const ZS = w.forwardRef(({ className: e, ...i }, s) =>
   }),
 );
 ZS.displayName = ec.displayName;
-const lr = "https://blessedbarberpalma.setmore.com",
+const lr = "https://booksy.com/es-es/dl/show-business/55499",
+  setmoreUrl = "https://blessedbarberpalma.setmore.com",
   m4 = "34631935439",
   F0 = "+34 631 935 439",
   WS = (e) => `https://wa.me/${m4}?text=${encodeURIComponent(e)}`,
@@ -26897,10 +26898,20 @@ function S4() {
                                 "flex items-center justify-center gap-2 w-full px-4 py-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors uppercase tracking-widest text-xs font-bold",
                               children: [
                                 b.jsx(Jy, { className: "w-4 h-4" }),
+                                " Reservar en Booksy",
+                              ],
+                            }),
+                            b.jsxs("a", {
+                              href: setmoreUrl,
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                              className:
+                                "flex items-center justify-center gap-2 w-full px-4 py-3 bg-[#181818] border border-primary/40 text-primary hover:bg-primary/10 transition-colors uppercase tracking-widest text-xs font-bold",
+                              children: [
+                                b.jsx(tv, { className: "w-4 h-4" }),
                                 " Reservar Online",
                               ],
                             }),
-                            null,
                             b.jsx("p", {
                               className:
                                 "text-center text-xs text-muted-foreground pt-2",
@@ -27616,7 +27627,7 @@ function S4() {
                       variants: l,
                       className: "text-muted-foreground mb-10",
                       children:
-                        "Reserva tu cita online en segundos en Setmore con calendario en tiempo real y confirmación inmediata.",
+                        "Reserva en segundos a través de Booksy o directamente con nuestra agenda online en tiempo real.",
                     }),
                     b.jsxs("div", {
                       className: "space-y-4",
@@ -27638,12 +27649,12 @@ function S4() {
                                     b.jsx("div", {
                                       className:
                                         "text-xs tracking-widest uppercase opacity-80",
-                                      children: "Reserva online",
+                                      children: "Reserva Booksy",
                                     }),
                                     b.jsx("div", {
                                       className:
                                         "text-lg md:text-xl font-serif",
-                                      children: "Reservar Cita Online",
+                                      children: "Reservar en Booksy",
                                     }),
                                   ],
                                 }),
@@ -27655,7 +27666,40 @@ function S4() {
                             }),
                           ],
                         }),
-                        null,
+                        b.jsxs(Ct.a, {
+                          variants: l,
+                          href: setmoreUrl,
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                          className:
+                            "group w-full flex items-center justify-between gap-4 p-6 bg-[#161616] border border-primary/40 text-white hover:border-primary/80 transition-colors text-left",
+                          children: [
+                            b.jsxs("div", {
+                              className: "flex items-center gap-4",
+                              children: [
+                                b.jsx(tv, { className: "w-7 h-7 shrink-0 text-primary" }),
+                                b.jsxs("div", {
+                                  children: [
+                                    b.jsx("div", {
+                                      className:
+                                        "text-xs tracking-widest uppercase opacity-80 text-primary",
+                                      children: "Cita Directa",
+                                    }),
+                                    b.jsx("div", {
+                                      className:
+                                        "text-lg md:text-xl font-serif",
+                                      children: "Reservar Online",
+                                    }),
+                                  ],
+                                }),
+                              ],
+                            }),
+                            b.jsx(Tf, {
+                              className:
+                                "w-5 h-5 opacity-70 group-hover:translate-x-1 transition-transform",
+                            }),
+                          ],
+                        }),
                       ],
                     }),
                   ],

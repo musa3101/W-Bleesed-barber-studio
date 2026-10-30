@@ -47,10 +47,10 @@
     <link rel="preload" as="image" href="./images/hero-new.jpg" />
 
     <!-- App -->
-    <script type="module" crossorigin src="./assets/index-gynIhAn1.js?v=10"></script>
+    <script type="module" crossorigin src="./assets/index-gynIhAn1.js?v=11"></script>
     <script type="module" src="./supabase-integration.js?v=2"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-nloeWNVQ.css">
-    <link rel="stylesheet" href="./assets/redesign.css?v=9">
+    <link rel="stylesheet" href="./assets/redesign.css?v=10">
 
     <!-- Structured Data for Local Business SEO -->
     <script type="application/ld+json">
@@ -485,35 +485,15 @@
               el.textContent = 'Sobre nosotros';
               el.classList.add('font-serif');
             }
-            if (el.children.length === 0) {
-              if (txt.includes('Reservar en Booksy') || txt.includes('reservar online en Booksy') || txt === 'RESERVAR') {
-                el.textContent = 'RESERVAR ONLINE';
-              } else if (txt.includes('Reserva online en Booksy.')) {
-                el.textContent = 'Reserva tu cita online en tiempo real.';
-              } else if (txt.includes('Reserva online en segundos a través de Booksy') || txt.includes('o si lo prefieres por WhatsApp')) {
-                el.textContent = 'Reserva tu cita online en segundos en Setmore con calendario en tiempo real y confirmación inmediata.';
-              } else if (txt.includes('en Booksy') && !txt.includes('reseña')) {
-                el.textContent = txt.replace(/en Booksy/gi, 'Online');
+            if (el.tagName === 'A' && el.href) {
+              if (el.href.includes('booksy.com') || el.href.includes('setmore.com')) {
+                el.setAttribute('target', '_blank');
+                el.setAttribute('rel', 'noopener noreferrer');
               }
-            } else {
-              // Si tiene hijos como SVGs o iconos (ej: botón del menú móvil)
-              el.childNodes.forEach(node => {
-                if (node.nodeType === 3 && node.textContent.trim()) {
-                  const nodeTxt = node.textContent.trim();
-                  if (nodeTxt.includes('Booksy') || nodeTxt === 'Reservar' || nodeTxt === 'RESERVAR') {
-                    node.textContent = node.textContent.replace(/Reservar en Booksy/gi, 'RESERVAR ONLINE').replace(/en Booksy/gi, 'Online').replace(/Booksy/gi, 'Online');
-                  }
-                }
-              });
-            }
-            if (el.tagName === 'A' && el.href && (el.href.includes('booksy.com') || el.href.includes('setmore.com'))) {
-              el.href = 'https://blessedbarberpalma.setmore.com';
-              el.setAttribute('target', '_blank');
-              el.setAttribute('rel', 'noopener noreferrer');
             }
           });
 
-          // Ocultar botones de WhatsApp en la versión de reservas con Setmore
+          // Ocultar botones de WhatsApp en la versión demo de Setmore
           document.querySelectorAll('button[aria-label="Reservar por WhatsApp"], button.bg-\\[\\#25D366\\], [class*="bg-[#25D366]"]').forEach(b => {
             b.style.display = 'none';
           });
