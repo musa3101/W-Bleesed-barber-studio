@@ -26900,17 +26900,7 @@ function S4() {
                                 " Reservar Online",
                               ],
                             }),
-                            b.jsxs("button", {
-                              onClick: () => {
-                                (i(!1), r(!0));
-                              },
-                              className:
-                                "flex items-center justify-center gap-2 w-full px-4 py-3 bg-[#25D366] text-white hover:bg-[#1ebe5b] transition-colors uppercase tracking-widest text-xs font-bold",
-                              children: [
-                                b.jsx(cr, { className: "w-4 h-4" }),
-                                " WhatsApp con Gustavo",
-                              ],
-                            }),
+                            null,
                             b.jsx("p", {
                               className:
                                 "text-center text-xs text-muted-foreground pt-2",
@@ -27665,40 +27655,7 @@ function S4() {
                             }),
                           ],
                         }),
-                        b.jsxs(Ct.button, {
-                          variants: l,
-                          type: "button",
-                          onClick: () => r(!0),
-                          className:
-                            "group w-full flex items-center justify-between gap-4 p-6 bg-[#25D366] text-white hover:bg-[#1ebe5b] transition-colors text-left",
-                          children: [
-                            b.jsxs("div", {
-                              className: "flex items-center gap-4",
-                              children: [
-                                b.jsx(cr, { className: "w-7 h-7 shrink-0" }),
-                                b.jsxs("div", {
-                                  children: [
-                                    b.jsx("div", {
-                                      className:
-                                        "text-xs tracking-widest uppercase opacity-80",
-                                      children:
-                                        "Chat directo · Maestro Gustavo",
-                                    }),
-                                    b.jsx("div", {
-                                      className:
-                                        "text-lg md:text-xl font-serif",
-                                      children: "WhatsApp con servicio",
-                                    }),
-                                  ],
-                                }),
-                              ],
-                            }),
-                            b.jsx(tv, {
-                              className:
-                                "w-5 h-5 opacity-70 group-hover:translate-x-1 transition-transform",
-                            }),
-                          ],
-                        }),
+                        null,
                       ],
                     }),
                   ],
@@ -27878,20 +27835,7 @@ function S4() {
           }),
         ],
       }),
-      b.jsxs("button", {
-        type: "button",
-        onClick: () => r(!0),
-        "aria-label": "Reservar por WhatsApp",
-        className:
-          "fixed bottom-6 right-6 z-40 flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#25D366] text-white shadow-2xl shadow-black/50 hover:scale-110 transition-transform",
-        children: [
-          b.jsx(cr, { className: "w-7 h-7 md:w-8 md:h-8" }),
-          b.jsx("span", {
-            className:
-              "absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30 pointer-events-none",
-          }),
-        ],
-      }),
+      null,
       b.jsx(d4, {
         open: s,
         onOpenChange: (val) => {
