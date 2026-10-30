@@ -105,11 +105,12 @@ function applyReplacements() {
     }
 
     // Reemplazar la sección About
-    if (supabaseContent['about']) {
-        replaceTextNode('Sobre nosotros', supabaseContent['about'].title);
-        replaceTextNode('Nuestra Esencia', supabaseContent['about'].title);
-        replaceTextNode('Filosofía', supabaseContent['about'].title);
-    }
+    const aboutTitle = (supabaseContent['about'] && supabaseContent['about'].title && supabaseContent['about'].title !== 'Nuestra Esencia')
+        ? supabaseContent['about'].title
+        : 'Sobre nosotros';
+
+    replaceTextNode('Nuestra Esencia', aboutTitle);
+    replaceTextNode('Filosofía', aboutTitle);
 
     // Reemplazar Servicios Dinámicamente
     originalServices.forEach(orig => {
