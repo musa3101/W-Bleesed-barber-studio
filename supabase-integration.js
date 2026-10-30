@@ -106,7 +106,9 @@ function applyReplacements() {
 
     // Reemplazar la sección About
     if (supabaseContent['about']) {
+        replaceTextNode('Sobre nosotros', supabaseContent['about'].title);
         replaceTextNode('Nuestra Esencia', supabaseContent['about'].title);
+        replaceTextNode('Filosofía', supabaseContent['about'].title);
     }
 
     // Reemplazar Servicios Dinámicamente

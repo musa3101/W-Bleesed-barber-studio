@@ -26603,7 +26603,7 @@ const lr = "https://booksy.com/es-es/dl/show-business/55499",
       }),
     }),
   g4 = [
-    { href: "#filosofia", label: "Filosofía" },
+    { href: "#filosofia", label: "Sobre nosotros" },
     { href: "#servicios", label: "Servicios" },
     { href: "#galeria", label: "Galería" },
     { href: "#resenas", label: "Reseñas" },
@@ -28081,7 +28081,7 @@ function S4() {
                 b.jsxs("div", {
                   className: "flex flex-col gap-2.5 text-xs text-muted-foreground",
                   children: [
-                    b.jsx("a", { href: "#filosofia", className: "hover:text-primary transition-colors", children: "Nuestra Esencia" }),
+                    b.jsx("a", { href: "#filosofia", className: "hover:text-primary transition-colors", children: "Sobre nosotros" }),
                     b.jsx("a", { href: "#servicios", className: "hover:text-primary transition-colors", children: "Servicios" }),
                     b.jsx("a", { href: "#galeria", className: "hover:text-primary transition-colors", children: "Galería" }),
                     b.jsxs("a", {

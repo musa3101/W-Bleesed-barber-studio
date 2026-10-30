@@ -47,7 +47,7 @@
     <link rel="preload" as="image" href="./images/hero-new.jpg" />
 
     <!-- App -->
-    <script type="module" crossorigin src="./assets/index-gynIhAn1.js?v=7"></script>
+    <script type="module" crossorigin src="./assets/index-gynIhAn1.js?v=8"></script>
     <script type="module" src="./supabase-integration.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-nloeWNVQ.css">
     <link rel="stylesheet" href="./assets/redesign.css?v=4">
@@ -435,10 +435,11 @@
             }
           }
 
-          document.querySelectorAll('a:not(.esencia-applied), button:not(.esencia-applied), h2:not(.esencia-applied), h3:not(.esencia-applied), span:not(.esencia-applied)').forEach(el => {
-            if (el.textContent.trim().toUpperCase() === 'FILOSOFÍA' || el.textContent.trim() === 'Filosofía') {
-              el.textContent = 'Nuestra Esencia';
-              el.classList.add('font-serif', 'esencia-applied');
+          document.querySelectorAll('a, button, h2, h3, span').forEach(el => {
+            const txt = el.textContent.trim();
+            if (txt === 'Filosofía' || txt === 'FILOSOFÍA' || txt === 'Nuestra Esencia' || txt === 'NUESTRA ESENCIA') {
+              el.textContent = 'Sobre nosotros';
+              el.classList.add('font-serif');
             }
           });
         }, 150);

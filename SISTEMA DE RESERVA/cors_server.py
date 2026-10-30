@@ -1,9 +1,8 @@
 import http.server
 import socketserver
-import os
 
 PORT = 8765
-DIRECTORY = "/Users/musa/W-Bleesed barberia/SISTEMA DE RESERVA/fotos de corte-SETMORE"
+DIRECTORY = "/Users/musa/W-Bleesed barberia/SISTEMA DE RESERVA"
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -23,4 +22,3 @@ socketserver.TCPServer.allow_reuse_address = True
 with socketserver.TCPServer(("", PORT), Handler) as httpd:
     print(f"Serving with CORS on port {PORT}")
     httpd.serve_forever()
-
