@@ -50,7 +50,7 @@
     <script type="module" crossorigin src="./assets/index-gynIhAn1.js?v=8"></script>
     <script type="module" src="./supabase-integration.js?v=2"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-nloeWNVQ.css">
-    <link rel="stylesheet" href="./assets/redesign.css?v=5">
+    <link rel="stylesheet" href="./assets/redesign.css?v=6">
 
     <!-- Structured Data for Local Business SEO -->
     <script type="application/ld+json">
@@ -495,6 +495,43 @@
             
             if (creditP.parentNode !== bottomContainer) {
               bottomContainer.appendChild(creditP);
+            }
+          }
+
+          // Live Business Status Badge in Footer (uipro-max)
+          if (footer) {
+            const centerCol = footer.querySelector('.container > div:nth-child(2)');
+            if (centerCol && !document.getElementById('footer-live-status')) {
+              const now = new Date();
+              const formatter = new Intl.DateTimeFormat('es-ES', { timeZone: 'Europe/Madrid', hour: 'numeric', minute: 'numeric', hour12: false });
+              const parts = formatter.formatToParts(now);
+              const hour = parseInt(parts.find(p => p.type === 'hour')?.value || '12', 10);
+              const day = now.getDay();
+              const isOpen = (day >= 1 && day <= 6) && (hour >= 10 && hour < 20);
+
+              const statusDiv = document.createElement('div');
+              statusDiv.id = 'footer-live-status';
+              statusDiv.className = `footer-live-badge ${isOpen ? 'open' : 'closed'}`;
+              statusDiv.innerHTML = isOpen
+                ? '<span class="footer-pulse-dot"></span> Abierto hoy · 10:00 - 20:00'
+                : '<span class="footer-closed-dot"></span> Cerrado ahora · Abre a las 10:00';
+
+              const locationLink = document.createElement('a');
+              locationLink.id = 'footer-location-btn';
+              locationLink.href = 'https://maps.google.com/?q=Blessed+Barber+Studio+Palma';
+              locationLink.target = '_blank';
+              locationLink.rel = 'noopener noreferrer';
+              locationLink.className = 'footer-location-card';
+              locationLink.innerHTML = '<span>📍</span> Carrer Miquel Marquès, 12, Palma';
+
+              const socialsContainer = centerCol.querySelector('.flex.gap-4');
+              if (socialsContainer) {
+                centerCol.insertBefore(statusDiv, socialsContainer);
+                centerCol.insertBefore(locationLink, socialsContainer);
+              } else {
+                centerCol.appendChild(statusDiv);
+                centerCol.appendChild(locationLink);
+              }
             }
           }
 

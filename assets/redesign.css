@@ -2100,133 +2100,243 @@ footer img + div + div {
 
 
 /* ==========================================================
-   MODERN MOBILE SNAP CAROUSELS & INTERACTIVITY (uipro-max & impeccable)
+   BENTO GRID EDITORIAL SERVICES (uipro-max & gpt-taste)
    ========================================================== */
+#servicios {
+    background: radial-gradient(circle at 50% 15%, rgba(183, 28, 28, 0.06) 0%, transparent 65%), #0A0A0A !important;
+}
 
-/* Gallery Filter Pills */
-.gallery-filter-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+#servicios .container {
+    max-width: 1100px !important;
 }
-.gallery-filter-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.25);
-    transform: translateY(-1px);
+
+/* Category Headers (h3) */
+#servicios h3 {
+    font-size: 0.8rem !important;
+    letter-spacing: 0.25em !important;
+    text-transform: uppercase !important;
+    font-weight: 800 !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-bottom: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
 }
-.gallery-filter-btn.active-filter {
+
+#servicios h3::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background: #D4AF37 !important;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.8) !important;
+}
+
+/* Multi-column Bento Grid Layout */
+#servicios .space-y-3 {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)) !important;
+    gap: 1.15rem !important;
+    margin-top: 1rem !important;
+}
+
+/* Individual Bento Service Card */
+#servicios .space-y-3 .group {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    padding: 1.4rem !important;
+    margin: 0 !important;
+    border-radius: 1.25rem !important;
+    background: linear-gradient(145deg, rgba(22, 22, 26, 0.9), rgba(12, 12, 16, 0.96)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    min-height: 155px !important;
+}
+
+/* Subtle corner highlight */
+#servicios .space-y-3 .group::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 2px !important;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent) !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+#servicios .space-y-3 .group:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(212, 175, 55, 0.45) !important;
+    box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.85), 0 0 24px rgba(212, 175, 55, 0.15) !important;
+}
+
+#servicios .space-y-3 .group:hover::before {
+    opacity: 1 !important;
+}
+
+/* Remove cheap emojis */
+#servicios .space-y-3 .group > div:first-child > span:first-child {
+    display: none !important;
+}
+
+/* Service Title in Card */
+#servicios .space-y-3 .group h4 {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    letter-spacing: -0.01em !important;
+    margin-bottom: 0.35rem !important;
+    white-space: normal !important;
+    text-overflow: unset !important;
+    line-height: 1.3 !important;
+}
+
+/* Service Description in Card */
+#servicios .space-y-3 .group p {
+    font-size: 0.82rem !important;
+    color: rgba(255, 255, 255, 0.55) !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+    text-overflow: unset !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Bottom Price & Action Row */
+#servicios .space-y-3 .group > div.text-right {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding-top: 0.85rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+    margin-top: auto !important;
+}
+
+/* Large Gold Price */
+#servicios .space-y-3 .group > div.text-right span {
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    font-family: var(--font-industrial, 'Oswald'), sans-serif !important;
+    color: #D4AF37 !important;
+    letter-spacing: 0.02em !important;
+    text-shadow: 0 0 12px rgba(212, 175, 55, 0.3) !important;
+}
+
+/* Sleek Reservar CTA button inside the price row */
+#servicios .space-y-3 .group > div.text-right::after {
+    content: 'Reservar →' !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    padding: 0.35rem 0.8rem !important;
+    border-radius: 9999px !important;
+    transition: all 0.2s ease !important;
+}
+
+#servicios .space-y-3 .group:hover > div.text-right::after {
     background: var(--accent-red, #B71C1C) !important;
     border-color: var(--accent-red-hover, #D32F2F) !important;
     color: #ffffff !important;
-    box-shadow: 0 4px 16px rgba(183, 28, 28, 0.45) !important;
+    box-shadow: 0 4px 14px rgba(183, 28, 28, 0.4) !important;
+    transform: translateX(2px) !important;
 }
 
-@media (max-width: 768px) {
-    /* 1. Galería Móvil: Carrusel Táctil Horizontal */
-    #galeria {
-        padding-top: 3.5rem !important;
-        padding-bottom: 3.5rem !important;
-        overflow: hidden !important;
-    }
-    #galeria .container:has(.grid),
-    #galeria > div:nth-child(2) {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        max-width: 100% !important;
-        width: 100% !important;
-        overflow: visible !important;
-    }
-    #galeria .grid {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        scroll-snap-type: x mandatory !important;
-        -webkit-overflow-scrolling: touch !important;
-        gap: 1.1rem !important;
-        padding: 0.5rem 1.25rem 1.75rem 1.25rem !important;
-        margin: 0 !important;
-        scrollbar-width: none !important;
-    }
-    #galeria .grid::-webkit-scrollbar {
-        display: none !important;
-    }
-    #galeria .grid > div,
-    #galeria .gallery-card {
-        flex: 0 0 78vw !important;
-        max-width: 310px !important;
-        min-width: 260px !important;
-        scroll-snap-align: center !important;
-        scroll-snap-stop: always !important;
-        border-radius: 1.25rem !important;
-        overflow: hidden !important;
-        aspect-ratio: 1 / 1 !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
-        transition: transform 0.25s ease, border-color 0.25s ease !important;
-    }
-
-    /* 2. Reseñas Móvil: Carrusel Táctil Horizontal + Bento Badge */
-    #resenas {
-        padding-top: 3.5rem !important;
-        padding-bottom: 3.5rem !important;
-        overflow: hidden !important;
-    }
-    #resenas .inline-flex {
-        width: 100% !important;
-        max-width: 350px !important;
-        padding: 1.25rem 1.5rem !important;
-        border-radius: 1.25rem !important;
-        margin-bottom: 1.5rem !important;
-        background: linear-gradient(135deg, rgba(28,28,32,0.92), rgba(16,16,20,0.98)) !important;
-        border: 1px solid rgba(212, 175, 55, 0.35) !important;
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6) !important;
-    }
-    #resenas .container:has(.grid),
-    #resenas > div > div:nth-child(2) {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        max-width: 100% !important;
-        width: 100% !important;
-        overflow: visible !important;
-    }
-    #resenas .grid {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        scroll-snap-type: x mandatory !important;
-        -webkit-overflow-scrolling: touch !important;
-        gap: 1rem !important;
-        padding: 0.5rem 1.25rem 1.75rem 1.25rem !important;
-        margin: 0 !important;
-        scrollbar-width: none !important;
-    }
-    #resenas .grid::-webkit-scrollbar {
-        display: none !important;
-    }
-    #resenas .grid > div {
-        flex: 0 0 82vw !important;
-        max-width: 320px !important;
-        min-width: 270px !important;
-        scroll-snap-align: center !important;
-        scroll-snap-stop: always !important;
-        border-radius: 1.25rem !important;
-        padding: 1.35rem !important;
-        background: linear-gradient(145deg, rgba(22, 22, 26, 0.95), rgba(14, 14, 18, 0.98)) !important;
-        border: 1px solid rgba(212, 175, 55, 0.22) !important;
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.65) !important;
-    }
+/* ==========================================================
+   MODERN SWISS FOOTER & LIVE STATUS (uipro-max & impeccable)
+   ========================================================== */
+footer {
+    background: #08080A !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    position: relative !important;
 }
 
-/* Microinteracciones Táctiles (uipro-max) */
-button, a.btn, .btn-primary, [role="button"] {
-    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background 0.2s ease !important;
+/* Fix circular logo in footer (remove beige background) */
+footer img {
+    background: transparent !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
-button:active, a.btn:active, [role="button"]:active {
-    transform: scale(0.96) !important;
+
+/* Footer Live Status Badge */
+.footer-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-top: 0.5rem;
+}
+.footer-live-badge.open {
+    background: rgba(16, 185, 129, 0.1);
+    color: #34D399;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+.footer-live-badge.closed {
+    background: rgba(245, 158, 11, 0.1);
+    color: #FBBF24;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.footer-pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34D399;
+    box-shadow: 0 0 8px #34D399;
+    animation: livePulse 2s infinite ease-in-out;
+}
+.footer-closed-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #FBBF24;
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Location Card in Footer */
+.footer-location-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.5rem 0.9rem;
+    border-radius: 0.75rem;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.5rem;
+    transition: all 0.2s ease;
+}
+.footer-location-card:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
 }
