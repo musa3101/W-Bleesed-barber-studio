@@ -47,10 +47,10 @@
     <link rel="preload" as="image" href="./images/hero-new.jpg" />
 
     <!-- App -->
-    <script type="module" crossorigin src="./assets/index-gynIhAn1.js?v=8"></script>
+    <script type="module" crossorigin src="./assets/index-gynIhAn1.js?v=9"></script>
     <script type="module" src="./supabase-integration.js?v=2"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-nloeWNVQ.css">
-    <link rel="stylesheet" href="./assets/redesign.css?v=7">
+    <link rel="stylesheet" href="./assets/redesign.css?v=8">
 
     <!-- Structured Data for Local Business SEO -->
     <script type="application/ld+json">
@@ -495,6 +495,16 @@
               } else if (txt.includes('en Booksy') && !txt.includes('reseña')) {
                 el.textContent = txt.replace(/en Booksy/gi, 'Online');
               }
+            } else {
+              // Si tiene hijos como SVGs o iconos (ej: botón del menú móvil)
+              el.childNodes.forEach(node => {
+                if (node.nodeType === 3 && node.textContent.trim()) {
+                  const nodeTxt = node.textContent.trim();
+                  if (nodeTxt.includes('Booksy') || nodeTxt === 'Reservar' || nodeTxt === 'RESERVAR') {
+                    node.textContent = node.textContent.replace(/Reservar en Booksy/gi, 'RESERVAR ONLINE').replace(/en Booksy/gi, 'Online').replace(/Booksy/gi, 'Online');
+                  }
+                }
+              });
             }
             if (el.tagName === 'A' && el.href && (el.href.includes('booksy.com') || el.href.includes('setmore.com'))) {
               el.href = 'https://blessedbarberpalma.setmore.com';
