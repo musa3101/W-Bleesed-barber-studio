@@ -1,38 +1,32 @@
-# Sesión Actual - 01/07/2026
+# Última Sesión - 30/10/2026
 
 ## ¿Qué se ha hecho hoy?
-- **Integración de Backend con Supabase:** Vinculación completa del proyecto estático a Supabase mediante variables de entorno locales (`.env`).
-- **Estructuración de Base de Datos:** Creación de las tablas `content` (textos), `services` (servicios y precios), `gallery` (imágenes) y `barbers` (personal).
-- **Creación de Almacenamiento (Storage):** Creación y configuración remota del bucket de almacenamiento público llamado `gallery` para albergar imágenes y videos de forma directa.
-- **Frontend Dinámico:** Inyección de `@supabase/supabase-js` en `index.html` y creación de `supabase-integration.js`.
-- **Vista Previa Social:** Actualización de los meta tags Open Graph y Twitter (`og:image` y `twitter:image`) en `index.html` para usar el logo oficial en lugar de la foto del local al compartir el enlace.
-- **Optimización de Carga de Vídeo (Cache API + Blobs):** Creación del helper `preloadVideo` en `index.html` y `supabase-integration.js` para descargar y almacenar los vídeos en la memoria caché del navegador como Blob URLs. Esto elimina el buffering y permite la reproducción en bucle ultra-fluida e instantánea en ordenadores y móviles.
-- **Rediseño del Footer (Alineación, Contraste y Espaciado):**
-  - Configuración del fondo del footer a negro puro (`#000000`) para excelente contraste.
-  - Corrección de la tipografía del título principal para evitar tonos rojos oscuros de bajo contraste.
-  - Reestructuración dinámica mediante DOM para mover los derechos de autor y el crédito de MYNEXT a una fila inferior de ancho completo. Esto corrige el error en móviles donde "Soporte y Legal" se renderizaba abajo del todo.
-  - Incremento del espaciado (margins, paddings y gaps de 4.5rem) entre bloques y links para dar más "aire" visual a la estructura en móvil y ordenador.
-- **Intercepción de Modal:** Programación de la carga de servicios, reemplazo de imágenes y sustitución dinámica de barberos en el modal de reservas por WhatsApp.
-- **Ajustes de UI y Redacción (Faqs y Menú Móvil):**
-  - Eliminación de **Bizum** de los métodos de pago aceptados en la sección de preguntas frecuentes de `index.html`.
-  - Solución al solapamiento en el menú móvil: se reubicó y redimensionó el botón de cerrar ("✕") y se añadió un margen de protección al título del menú para evitar que se escriba encima de la caja del botón.
-  - Corrección de tipografías: el título del menú móvil ahora es blanco puro en lugar de rojo oscuro de bajo contraste.
+1. **Configuración Integral de Setmore para Blessed Barber Studio:**
+   - Creación y ajuste de la URL de reservas oficial: `https://blessedbarberpalma.setmore.com`.
+   - Limpieza completa de servicios: nombres pulidos sin coletillas, eliminación de fotos desajustadas y añadido campo personalizado de método de pago preferido (**Efectivo o Tarjeta en el local**).
+   - Generación y subida del banner artístico estilo **Neon Graffiti** (1200x400 px) con el nombre de la barbería.
+   - Eliminación de perfiles de prueba en Setmore para dejar únicamente al **Maestro Gustavo Quinoz** como barbero único.
+2. **Arquitectura Web Doble (Opción A - Staging / Demo en Paralelo):**
+   - **Web de Producción (`main`)**: `https://blessedstudio.pages.dev` se mantiene 100% intacta con el sistema actual de reservas vía WhatsApp.
+   - **Web de Demostración (`dev`)**: Desplegada en Cloudflare Pages en `https://dev.blessedstudio.pages.dev` para enseñar la nueva experiencia interactiva al dueño antes de tocar producción.
+3. **Modal de Reserva Directa y Fluida en la Web Demo:**
+   - Integración de ventana modal con tema oscuro y toques dorados que abre la agenda de Setmore sin sacar al usuario de la web.
+   - Botón de apertura a pantalla completa si el cliente lo prefiere.
+   - Botón "RESERVAR CON WHATSAPP" mantenido para que el cliente pueda comparar ambas vías.
+   - Píldora flotante discreta en la demo para navegar entre la web actual y la nueva versión.
 
 ## Archivos modificados
-- `index.html` (Modificado para cargar la integración de Supabase, FAQs y ajustes de menú)
-- `assets/redesign.css` (Modificado con los estilos de footer, espacios y menú móvil)
-- `supabase-integration.js` (Nuevo script de conexión y manipulaciones del DOM)
-- `supabase-setup.sql` (Actualizado con la estructura completa y semillas)
-- `.env` (Nuevo, credenciales locales)
-- `.gitignore` (Actualizado para ignorar archivos `.env` y proteger claves)
+- `index.html` (Integración del modal de Setmore, FAQ actualizada y píldora informativa demo)
+- `assets/redesign.css` (Estilos del modal de reservas y banner de staging)
+- `assets/index-gynIhAn1.js` (Enlace de reservas online redirigido a Setmore en la rama `dev`)
 - `docs/SESSION_LATEST_ES.md` (Actualizado)
 - `docs/ROADMAP.md` (Actualizado)
 
 ## Problemas solucionados
-- **CMS Dinámico en Web Compilada:** Se resolvió el reto de hacer dinámica una web ya construida/ofuscada de React usando un `MutationObserver` y reemplazo recursivo de nodos de texto.
-- **Seguridad de Tokens:** Se configuró el flujo de variables locales para evitar que las credenciales administrativas de Supabase se suban a GitHub.
-- **Falta de Storage:** Se dejó configurado el bucket público de Supabase para que el cliente pueda subir y usar sus propias fotos directamente.
+- **Riesgo cero en Producción:** La web en vivo nunca se ve alterada; Gustavo puede probar el flujo completo en su móvil en el enlace `dev.blessedstudio.pages.dev`.
+- **Experiencia de Pago Cómoda:** No se exige tarjeta online a los clientes; pueden elegir pagar en efectivo o datáfono en el local.
+- **Identidad Visual Premium:** Banner neón graffiti llamativo y servicios ordenados con duraciones y precios exactos.
 
 ## Pendiente
-- Subir los cambios a GitHub para sincronizar el repositorio.
-- Explicar al cliente cómo subir fotos al storage y enlazar sus URLs en la tabla de base de datos.
+- Presentar la demo a Gustavo para validar si prefiere este sistema frente a Booksy/WhatsApp.
+- Una vez aprobado, fusionar `dev` en `main` para publicarlo en producción con un solo clic.

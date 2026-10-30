@@ -6,12 +6,16 @@
 - [x] Modales informativos de servicios y políticas legales.
 - [x] Configuración de la base de datos en Supabase (Tablas de contenido, servicios, galería y barberos).
 - [x] Configuración del almacenamiento en Supabase (Bucket público `gallery`).
-- [x] Enlace dinámico del frontend con el backend (CMS para que el cliente edite textos, precios, fotos y barberos sin tocar código).
+- [x] Enlace dinámico del frontend con el backend (CMS para editar textos y precios).
+- [x] Configuración completa del portal de reservas Setmore (`blessedbarberpalma.setmore.com`).
+- [x] Banner artístico en neón graffiti adaptado a 1200x400 px.
+- [x] Campo para elección de método de pago (Efectivo o Tarjeta en el local).
+- [x] Despliegue de la web doble (Staging/Demo en `dev.blessedstudio.pages.dev` y Producción intacta en `blessedstudio.pages.dev`).
 
 ## Tareas en Progreso
-- [ ] Ninguna.
+- [ ] Validación de la demo con el dueño (Gustavo).
 
 ## Próximas Mejoras Prioritarias
-- [ ] Subir cambios al repositorio de GitHub.
-- [ ] Desplegar la web final en Netlify / Vercel vinculándola con el nuevo backend de Supabase.
-- [ ] Pruebas finales en producción con el cliente (Gustavo).
+- [ ] Si Gustavo da el visto bueno: merge de la rama `dev` a `main` para publicar en la web oficial.
+- [ ] Si prefiere mantener solo WhatsApp: descartar rama `dev` sin alterar la web actual.
+- [ ] Sincronización del calendario de Google Calendar con la agenda de Setmore para Gustavo.
