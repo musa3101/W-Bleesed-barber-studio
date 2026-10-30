@@ -1,32 +1,38 @@
 # Última Sesión - 30/10/2026
 
 ## ¿Qué se ha hecho hoy?
-1. **Configuración Integral de Setmore para Blessed Barber Studio:**
-   - Creación y ajuste de la URL de reservas oficial: `https://blessedbarberpalma.setmore.com`.
-   - Limpieza completa de servicios: nombres pulidos sin coletillas, eliminación de fotos desajustadas y añadido campo personalizado de método de pago preferido (**Efectivo o Tarjeta en el local**).
-   - Generación y subida del banner artístico estilo **Neon Graffiti** (1200x400 px) con el nombre de la barbería.
-   - Eliminación de perfiles de prueba en Setmore para dejar únicamente al **Maestro Gustavo Quinoz** como barbero único.
-2. **Arquitectura Web Doble (Opción A - Staging / Demo en Paralelo):**
-   - **Web de Producción (`main`)**: `https://blessedstudio.pages.dev` se mantiene 100% intacta con el sistema actual de reservas vía WhatsApp.
-   - **Web de Demostración (`dev`)**: Desplegada en Cloudflare Pages en `https://dev.blessedstudio.pages.dev` para enseñar la nueva experiencia interactiva al dueño antes de tocar producción.
-3. **Modal de Reserva Directa y Fluida en la Web Demo:**
-   - Integración de ventana modal con tema oscuro y toques dorados que abre la agenda de Setmore sin sacar al usuario de la web.
-   - Botón de apertura a pantalla completa si el cliente lo prefiere.
-   - Botón "RESERVAR CON WHATSAPP" mantenido para que el cliente pueda comparar ambas vías.
-   - Píldora flotante discreta en la demo para navegar entre la web actual y la nueva versión.
+1. **Renovación Completa del Favicon:**
+   - Creación del nuevo favicon oficial con el isotipo de la marca (**B / S** con poste de barbero tradicional) sobre fondo transparente con suavizado (*antialiasing*).
+   - Generación de todos los formatos estándar: `favicon.ico`, `favicon.svg`, PNGs (16x16, 32x32, 192x192, 512x512) y `apple-touch-icon.png` para iPhone/iPad.
+2. **SEO Técnico y Google Search Console:**
+   - Inserción y validación de la etiqueta de verificación de propiedad de Google en `index.html`.
+   - Creación de `sitemap.xml` y `robots.txt` para indexación de Googlebot.
+   - Enlace canónico y datos estructurados Schema.org enriquecidos con coordenadas GPS locales de Palma de Mallorca.
+3. **Ajuste de Textos y CMS Supabase:**
+   - Sustitución de "Nuestra Esencia" por **"Sobre nosotros"** en todo el menú de navegación, móvil y pie de página.
+   - Corrección en `supabase-integration.js` para evitar que la base de datos sobrescribiera el texto antiguo.
+4. **Rediseño UI en Rama `dev` (Estilo `uipro-max` e `impeccable`):**
+   - **Carta de Servicios:** Transformada de lista plana con emojis a una **Bento Grid de Lujo** con tarjetas oscuras, precios destacados y botón directo de reserva.
+   - **Galería Panorámica Alargada:** Pista horizontal continua con botones `‹` y `›`, filtros por categoría (*Todos*, *Vídeos*, *Cortes*) y deslizamiento táctil en móvil.
+   - **Reseñas Alargadas:** Carrusel horizontal de testimonios con estrellas doradas y navegación por flechas.
+   - **Footer Modernizado:** Eliminado el fondo beige del logo, añadido badge de estado en vivo (*Abierto/Cerrado en tiempo real*) y tarjeta de ubicación a Google Maps.
 
 ## Archivos modificados
-- `index.html` (Integración del modal de Setmore, FAQ actualizada y píldora informativa demo)
-- `assets/redesign.css` (Estilos del modal de reservas y banner de staging)
-- `assets/index-gynIhAn1.js` (Enlace de reservas online redirigido a Setmore en la rama `dev`)
+- `index.html` (SEO, favicon, verificaciones de Google y controles interactivos)
+- `assets/redesign.css` (Bento Grid de servicios, pistas alargadas panorámicas y footer)
+- `assets/index-gynIhAn1.js` (Textos de navegación)
+- `supabase-integration.js` (Protección contra sobreescritura de "Sobre nosotros")
+- `favicon.ico`, `favicon.svg`, `apple-touch-icon.png` e `images/favicon*` (Nuevos favicons)
+- `sitemap.xml` y `robots.txt` (Nuevos archivos de rastreo SEO)
 - `docs/SESSION_LATEST_ES.md` (Actualizado)
 - `docs/ROADMAP.md` (Actualizado)
 
 ## Problemas solucionados
-- **Riesgo cero en Producción:** La web en vivo nunca se ve alterada; Gustavo puede probar el flujo completo en su móvil en el enlace `dev.blessedstudio.pages.dev`.
-- **Experiencia de Pago Cómoda:** No se exige tarjeta online a los clientes; pueden elegir pagar en efectivo o datáfono en el local.
-- **Identidad Visual Premium:** Banner neón graffiti llamativo y servicios ordenados con duraciones y precios exactos.
+- **Favicon feo y plano:** Reemplazado por un isotipo profesional y nítido.
+- **Rastreo e Indexación en Google:** Configurado y verificado en Google Search Console con sitemap y robots.txt válidos.
+- **Sobreescritura de textos:** Se neutralizó el bug del CMS dinámico que forzaba "Nuestra Esencia".
+- **Scroll vertical interminable en móvil:** Resuelto con carruseles horizontales snap tanto en galería como en reseñas.
 
 ## Pendiente
-- Presentar la demo a Gustavo para validar si prefiere este sistema frente a Booksy/WhatsApp.
-- Una vez aprobado, fusionar `dev` en `main` para publicarlo en producción con un solo clic.
+- Continuar en el otro chat con el sistema de reservas y la web de presentación.
+- Todo el trabajo de diseño nuevo se mantiene seguro y aislado en la rama local `dev`.

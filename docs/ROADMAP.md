@@ -11,11 +11,15 @@
 - [x] Banner artístico en neón graffiti adaptado a 1200x400 px.
 - [x] Campo para elección de método de pago (Efectivo o Tarjeta en el local).
 - [x] Despliegue de la web doble (Staging/Demo en `dev.blessedstudio.pages.dev` y Producción intacta en `blessedstudio.pages.dev`).
+- [x] **Renovación del Favicon:** Isotipo multirresolución B/S transparente en formatos `.ico`, `.svg`, `.png` y Apple Touch Icon.
+- [x] **SEO Técnico y Google Search Console:** Verificación de propiedad, creación de `sitemap.xml`, `robots.txt`, URL canónica y Schema local de Palma.
+- [x] **Bento Grid de Precios y Servicios:** Rediseño modular oscuro sin emojis infantiles y botón de reserva directa.
+- [x] **Pistas Alargadas Panorámicas:** Galería y reseñas en carrusel horizontal con controles de flechas y filtros.
+- [x] **Modernización del Footer:** Eliminado parche beige del logo, Live Status en tiempo real y enlace a Google Maps.
 
 ## Tareas en Progreso
-- [ ] Validación de la demo con el dueño (Gustavo).
+- [ ] Validación del nuevo sistema y diseño en la web de presentación en el chat paralelo.
 
 ## Próximas Mejoras Prioritarias
-- [ ] Si Gustavo da el visto bueno: merge de la rama `dev` a `main` para publicar en la web oficial.
-- [ ] Si prefiere mantener solo WhatsApp: descartar rama `dev` sin alterar la web actual.
-- [ ] Sincronización del calendario de Google Calendar con la agenda de Setmore para Gustavo.
+- [ ] Presentar la nueva experiencia de presentación y reservas a Gustavo.
+- [ ] Mantener la web actual intacta y, solo cuando Gustavo dé su confirmación definitiva, autorizar el paso a producción.
