@@ -94,6 +94,7 @@
       "paymentAccepted": "Cash, Credit Card"
     }
     </script>
+  </head>
   <body>
     <div id="root"></div>
     
@@ -663,5 +664,53 @@
       <a href="https://blessedstudio.pages.dev" target="_blank" rel="noopener noreferrer" title="Ir a la web de producción oficial">Web actual ↗</a>
       <button onclick="document.getElementById('demo-staging-badge-root').remove()" aria-label="Ocultar aviso">✕</button>
     </div>
+
+    <!-- Standalone Setmore Modal Controller -->
+    <script>
+      (function() {
+        window.openSetmoreModal = function() {
+          var m = document.getElementById('setmore-modal-root');
+          var f = document.getElementById('setmore-booking-iframe');
+          var l = document.getElementById('setmore-iframe-loader');
+          if (m && f) {
+            if (!f.src || f.src === 'about:blank' || f.src.indexOf('setmore.com') === -1) {
+              if (l) l.style.display = 'flex';
+              f.src = 'https://blessedbarberpalma.setmore.com';
+            }
+            m.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        };
+
+        window.closeSetmoreModal = function() {
+          var m = document.getElementById('setmore-modal-root');
+          if (m) {
+            m.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        };
+
+        document.addEventListener('click', function(e) {
+          var a = e.target.closest('a, button');
+          if (!a) return;
+          if (a.closest('#setmore-modal-root')) return;
+          var txt = (a.innerText || '').toUpperCase();
+          var href = a.getAttribute('href') || '';
+          if (txt.indexOf('WHATSAPP') !== -1 || href.indexOf('wa.me') !== -1) return;
+          if (href.indexOf('setmore.com') !== -1 || href.indexOf('booksy.com') !== -1 || txt.indexOf('RESERVA') !== -1) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.openSetmoreModal();
+          }
+        }, true);
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            window.closeSetmoreModal();
+            if (typeof window.closeLegalModal === 'function') window.closeLegalModal();
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
