@@ -50,7 +50,7 @@
     <script type="module" crossorigin src="./assets/index-gynIhAn1.js?v=8"></script>
     <script type="module" src="./supabase-integration.js?v=2"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-nloeWNVQ.css">
-    <link rel="stylesheet" href="./assets/redesign.css?v=6">
+    <link rel="stylesheet" href="./assets/redesign.css?v=7">
 
     <!-- Structured Data for Local Business SEO -->
     <script type="application/ld+json">
@@ -560,7 +560,7 @@
           });
         }, 150);
 
-        // Setup interactive Gallery Category Filter & Mobile Swipe Hint (uipro-max)
+        // Setup interactive Gallery Category Filter, Navigation Arrows & Elongated Track (uipro-max)
         const setupGalleryInteractions = () => {
           const galeriaSection = document.querySelector('#galeria');
           if (!galeriaSection) return;
@@ -570,20 +570,25 @@
           if (!document.getElementById('gallery-filter-bar')) {
             const filterBar = document.createElement('div');
             filterBar.id = 'gallery-filter-bar';
-            filterBar.className = 'flex items-center justify-center gap-2 mb-4 px-4 flex-wrap z-10 relative';
+            filterBar.className = 'flex items-center justify-between gap-3 mb-6 px-2 flex-wrap z-10 relative max-w-[95%] mx-auto';
             filterBar.innerHTML = `
-              <button type="button" data-filter="all" class="gallery-filter-btn active-filter px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Todos</button>
-              <button type="button" data-filter="video" class="gallery-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Vídeos 🎬</button>
-              <button type="button" data-filter="photo" class="gallery-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Cortes ✂️</button>
+              <div class="flex items-center gap-2 flex-wrap">
+                <button type="button" data-filter="all" class="gallery-filter-btn active-filter px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Todos</button>
+                <button type="button" data-filter="video" class="gallery-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Vídeos 🎬</button>
+                <button type="button" data-filter="photo" class="gallery-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Cortes ✂️</button>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" id="gallery-prev" class="slider-nav-btn" aria-label="Anterior">‹</button>
+                <button type="button" id="gallery-next" class="slider-nav-btn" aria-label="Siguiente">›</button>
+              </div>
             `;
 
-            const swipeHint = document.createElement('div');
-            swipeHint.id = 'gallery-swipe-hint';
-            swipeHint.className = 'md:hidden flex items-center justify-center gap-1.5 text-[11px] text-white/40 uppercase tracking-widest mb-3 select-none pointer-events-none';
-            swipeHint.innerHTML = '<span>‹</span> Desliza para explorar <span>›</span>';
-
             grid.parentNode.insertBefore(filterBar, grid);
-            grid.parentNode.insertBefore(swipeHint, grid);
+
+            const prevBtn = filterBar.querySelector('#gallery-prev');
+            const nextBtn = filterBar.querySelector('#gallery-next');
+            if (prevBtn) prevBtn.addEventListener('click', () => grid.scrollBy({ left: -360, behavior: 'smooth' }));
+            if (nextBtn) nextBtn.addEventListener('click', () => grid.scrollBy({ left: 360, behavior: 'smooth' }));
 
             filterBar.querySelectorAll('.gallery-filter-btn').forEach(btn => {
               btn.addEventListener('click', () => {
@@ -606,19 +611,33 @@
           }
         };
 
-        // Setup Reviews Mobile Swipe Hint (uipro-max)
+        // Setup Reviews Navigation Arrows & Panoramic Track (uipro-max)
         const setupReviewsInteractions = () => {
           const resenasSection = document.querySelector('#resenas');
           if (!resenasSection) return;
           const grid = resenasSection.querySelector('.grid');
           if (!grid) return;
 
-          if (!document.getElementById('reviews-swipe-hint')) {
-            const swipeHint = document.createElement('div');
-            swipeHint.id = 'reviews-swipe-hint';
-            swipeHint.className = 'md:hidden flex items-center justify-center gap-1.5 text-[11px] text-[#D4AF37]/70 uppercase tracking-widest mb-3 select-none pointer-events-none';
-            swipeHint.innerHTML = '<span>‹</span> Desliza para leer opiniones <span>›</span>';
-            grid.parentNode.insertBefore(swipeHint, grid);
+          if (!document.getElementById('reviews-nav-bar')) {
+            const navBar = document.createElement('div');
+            navBar.id = 'reviews-nav-bar';
+            navBar.className = 'flex items-center justify-between gap-3 mb-6 px-2 z-10 relative max-w-[95%] mx-auto';
+            navBar.innerHTML = `
+              <div class="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold flex items-center gap-2">
+                <span>★</span> Opiniones Verificadas de Clientes
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" id="reviews-prev" class="slider-nav-btn" aria-label="Anterior">‹</button>
+                <button type="button" id="reviews-next" class="slider-nav-btn" aria-label="Siguiente">›</button>
+              </div>
+            `;
+
+            grid.parentNode.insertBefore(navBar, grid);
+
+            const prevBtn = navBar.querySelector('#reviews-prev');
+            const nextBtn = navBar.querySelector('#reviews-next');
+            if (prevBtn) prevBtn.addEventListener('click', () => grid.scrollBy({ left: -380, behavior: 'smooth' }));
+            if (nextBtn) nextBtn.addEventListener('click', () => grid.scrollBy({ left: 380, behavior: 'smooth' }));
           }
         };
 
