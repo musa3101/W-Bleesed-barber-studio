@@ -2251,3 +2251,26 @@ footer img {
         max-width: 330px !important;
     }
 }
+
+/* ==========================================================================
+   ELIMINACIÓN DEFINITIVA DE WHATSAPP EN DEV
+   ========================================================================== */
+button[aria-label*="WhatsApp"],
+button[aria-label*="whatsapp"],
+a[href*="wa.me"],
+a[href*="whatsapp"],
+button[class*="bg-[#25D366]"],
+div[class*="bg-[#25D366]"],
+span[class*="bg-[#25D366]"],
+.fixed.bottom-6.right-6 {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    z-index: -99999 !important;
+}

@@ -26802,9 +26802,21 @@ function S4() {
                 asChild: !0,
                 variant: "outline",
                 className:
-                  "hidden sm:inline-flex border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-none uppercase tracking-widest text-xs font-bold shadow-[0_0_12px_0_rgba(184,134,64,0.25)] hover:shadow-[0_0_20px_0_rgba(184,134,64,0.5)] transition-all duration-300",
+                  "hidden sm:inline-flex border-2 border-primary/70 text-primary hover:bg-primary hover:text-primary-foreground rounded-none uppercase tracking-widest text-xs font-bold transition-all duration-300",
                 children: b.jsx("a", {
                   href: lr,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  children: "Reservar en Booksy",
+                }),
+              }),
+              b.jsx(dS, {
+                asChild: !0,
+                variant: "default",
+                className:
+                  "hidden md:inline-flex bg-primary text-primary-foreground hover:bg-primary/90 rounded-none uppercase tracking-widest text-xs font-bold shadow-[0_0_12px_0_rgba(184,134,64,0.25)] transition-all duration-300",
+                children: b.jsx("a", {
+                  href: setmoreUrl,
                   target: "_blank",
                   rel: "noopener noreferrer",
                   children: "Reservar Online",
@@ -26987,6 +26999,34 @@ function S4() {
                     "text-base md:text-lg text-muted-foreground max-w-xs md:max-w-sm leading-relaxed",
                   children:
                     "No somos una cadena. Somos un estudio donde cada corte se diseña para ti. Aquí no vienes solo a cortarte el pelo, vienes a salir en tu mejor versión.",
+                }),
+                b.jsxs(Ct.div, {
+                  variants: l,
+                  className: "mt-8 flex flex-col sm:flex-row gap-3 w-full max-w-md z-20 relative",
+                  children: [
+                    b.jsxs("a", {
+                      href: lr,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      className:
+                        "inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-bold uppercase tracking-widest text-xs hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all",
+                      children: [
+                        b.jsx(tv, { className: "w-4 h-4" }),
+                        "Reservar en Booksy",
+                      ],
+                    }),
+                    b.jsxs("a", {
+                      href: setmoreUrl,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      className:
+                        "inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-card/90 border-2 border-primary/60 text-white font-bold uppercase tracking-widest text-xs hover:border-primary hover:text-primary transition-all",
+                      children: [
+                        b.jsx(tv, { className: "w-4 h-4 text-primary" }),
+                        "Reservar Online",
+                      ],
+                    }),
+                  ],
                 }),
               ],
             }),
@@ -28072,11 +28112,18 @@ function S4() {
                     b.jsx("a", { href: "#filosofia", className: "hover:text-primary transition-colors", children: "Sobre nosotros" }),
                     b.jsx("a", { href: "#servicios", className: "hover:text-primary transition-colors", children: "Servicios" }),
                     b.jsx("a", { href: "#galeria", className: "hover:text-primary transition-colors", children: "Galería" }),
-                    b.jsxs("a", {
+                    b.jsx("a", {
                       href: lr,
                       target: "_blank",
                       rel: "noopener noreferrer",
                       className: "hover:text-primary transition-colors",
+                      children: "Reservar en Booksy"
+                    }),
+                    b.jsx("a", {
+                      href: setmoreUrl,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      className: "hover:text-primary transition-colors text-primary font-medium",
                       children: "Reservar Online"
                     })
                   ]

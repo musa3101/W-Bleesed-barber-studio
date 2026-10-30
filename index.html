@@ -47,10 +47,26 @@
     <link rel="preload" as="image" href="./images/hero-new.jpg" />
 
     <!-- App -->
-    <script type="module" crossorigin src="./assets/index-gynIhAn1.js?v=11"></script>
+    <script type="module" crossorigin src="./assets/index-blessed-v12.js"></script>
     <script type="module" src="./supabase-integration.js?v=2"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-nloeWNVQ.css">
-    <link rel="stylesheet" href="./assets/redesign.css?v=10">
+    <link rel="stylesheet" href="./assets/redesign.css?v=12">
+    <style>
+      /* Eliminación absoluta e irrevocable de WhatsApp en DEV */
+      button[aria-label*="WhatsApp"],
+      a[href*="wa.me"],
+      a[href*="whatsapp"],
+      button[class*="bg-[#25D366]"],
+      div[class*="bg-[#25D366]"],
+      .fixed.bottom-6.right-6 {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+    </style>
 
     <!-- Structured Data for Local Business SEO -->
     <script type="application/ld+json">
@@ -360,11 +376,14 @@
 
         // --- 3. Production Fixes & CSS Polish ---
         const optimizeProduction = debounce(() => {
+          // Destruir cualquier elemento de WhatsApp en la versión dev
+          document.querySelectorAll('button[aria-label*="WhatsApp"], a[href*="wa.me"], a[href*="whatsapp"], [class*="bg-[#25D366]"], .fixed.bottom-6.right-6').forEach(el => {
+            el.remove();
+          });
+
           document.querySelectorAll('button, a, p, span, div').forEach(el => {
               if (el.children.length === 0) {
                   const text = el.textContent.trim();
-                  if (text.includes('WHATSAPP CON GUSTAVO')) el.textContent = 'RESERVAR CON WHATSAPP';
-                  if (text.includes('WhatsApp con servicio')) el.textContent = 'RESERVAR CON WHATSAPP';
                   if (text.includes('631 935 439')) el.textContent = 'PALMA DE MALLORCA';
                   
                   if (text === 'By Gustavo' || text === 'Est. 2024 · Palma' || text === 'PREMIUM CUTS.') {
@@ -493,9 +512,9 @@
             }
           });
 
-          // Ocultar botones de WhatsApp en la versión demo de Setmore
-          document.querySelectorAll('button[aria-label="Reservar por WhatsApp"], button.bg-\\[\\#25D366\\], [class*="bg-[#25D366]"]').forEach(b => {
-            b.style.display = 'none';
+          // Eliminar botones de WhatsApp en la versión dev
+          document.querySelectorAll('button[aria-label*="WhatsApp"], a[href*="wa.me"], a[href*="whatsapp"], button.bg-\\[\\#25D366\\], [class*="bg-[#25D366]"], .fixed.bottom-6.right-6').forEach(b => {
+            b.remove();
           });
         }, 150);
 
