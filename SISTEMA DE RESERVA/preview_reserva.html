@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vista Previa — Sistema de Reservas Blessed Barber</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card-bg: #141414;
+      --border: #262626;
+      --gold: #d4af37;
+      --gold-hover: #b89628;
+      --text: #f5f5f5;
+      --text-muted: #a3a3a3;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+    .header {
+      text-align: center;
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 9999px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    .services-grid {
+      width: 100%;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (min-width: 640px) {
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .service-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .service-info h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .service-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .service-meta {
+      text-align: right;
+    }
+    .service-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.35rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .service-duration {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .action-container {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .btn-reservar {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--gold);
+      color: #000;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 1rem 2.5rem;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+    }
+    .btn-reservar:hover {
+      background: var(--gold-hover);
+      transform: scale(1.02);
+      box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Modal Iframe */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-container {
+      background: #111;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 900px;
+      height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      position: relative;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: #181818;
+    }
+    .modal-header h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      color: var(--gold);
+    }
+    .btn-close {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-close:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    iframe.setmore-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <span class="badge">PROTOTIPO — SISTEMA DE RESERVAS</span>
+    <h1>BLESSED BARBER STUDIO</h1>
+    <p class="subtitle">Panel de citas sincronizado con Setmore (Reservas Ilimitadas sin Booksy)</p>
+  </div>
+
+  <div class="action-container">
+    <button class="btn-reservar" onclick="abrirModal()">
+      <span>💈</span> Reservar Cita Online
+    </button>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-info">
+        <h3>Corte de pelo (fade al 0 moderno)</h3>
+        <p>Degradado super candela + corte a tijera.</p>
+      </div>
+      <div class="service-meta">
+        <div class="service-price">14 €</div>
+        <div class="service-duration">35 mins</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-info">
+        <h3>Corte + cejas</h3>
+        <p>Degradado bien afeitado + perfilado de cejas.</p>
+      </div>
+      <div class="service-meta">
+        <div class="service-price">15 €</div>
+        <div class="service-duration">40 mins</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-info">
+        <h3>Corte + barba</h3>
+        <p>El combo de siempre. Corte completo + arreglo de barba.</p>
+      </div>
+      <div class="service-meta">
+        <div class="service-price">18 €</div>
+        <div class="service-duration">45 mins</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-info">
+        <h3>Corte + barba + cejas</h3>
+        <p>El pack completo.</p>
+      </div>
+      <div class="service-meta">
+        <div class="service-price">20 €</div>
+        <div class="service-duration">50 mins</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-info">
+        <h3>Corte niño</h3>
+        <p>Para los pequeños. Hasta los 10 años.</p>
+      </div>
+      <div class="service-meta">
+        <div class="service-price">12 €</div>
+        <div class="service-duration">30 mins</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-info">
+        <h3>Barba moderna</h3>
+        <p>Degradado de barba con perfilado.</p>
+      </div>
+      <div class="service-meta">
+        <div class="service-price">8 €</div>
+        <div class="service-duration">20 mins</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-info">
+        <h3>Cejas</h3>
+        <p>Perfilado con cuchilla o portanavajas.</p>
+      </div>
+      <div class="service-meta">
+        <div class="service-price">3 €</div>
+        <div class="service-duration">10 mins</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-info">
+        <h3>Mechas rubias</h3>
+        <p>Mechas con acabado natural.</p>
+      </div>
+      <div class="service-meta">
+        <div class="service-price">30 €</div>
+        <div class="service-duration">60 mins</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-info">
+        <h3>Mechas + tinte</h3>
+        <p>Mechas estructuradas tirando al blanco.</p>
+      </div>
+      <div class="service-meta">
+        <div class="service-price">35 €</div>
+        <div class="service-duration">75 mins</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-info">
+        <h3>Decoloración + corte</h3>
+        <p>Decoloración completa + corte.</p>
+      </div>
+      <div class="service-meta">
+        <div class="service-price">50 €</div>
+        <div class="service-duration">90 mins</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal con Setmore -->
+  <div id="modalReserva" class="modal-overlay" onclick="cerrarModalAfuera(event)">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h4>RESERVAR CITA — BLESSED BARBER STUDIO</h4>
+        <button class="btn-close" onclick="cerrarModal()">✕</button>
+      </div>
+      <iframe class="setmore-frame" src="https://gustavoq84k.setmore.com" allow="payment"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function abrirModal() {
+      document.getElementById('modalReserva').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function cerrarModal() {
+      document.getElementById('modalReserva').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function cerrarModalAfuera(e) {
+      if (e.target.id === 'modalReserva') {
+        cerrarModal();
+      }
+    }
+  </script>
+
+</body>
+</html>
+
