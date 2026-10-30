@@ -26806,7 +26806,7 @@ function S4() {
                   href: lr,
                   target: "_blank",
                   rel: "noopener noreferrer",
-                  children: "Reservar",
+                  children: "Reservar Online",
                 }),
               }),
               b.jsxs(r4, {
@@ -26897,7 +26897,7 @@ function S4() {
                                 "flex items-center justify-center gap-2 w-full px-4 py-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors uppercase tracking-widest text-xs font-bold",
                               children: [
                                 b.jsx(Jy, { className: "w-4 h-4" }),
-                                " Reservar en Booksy",
+                                " Reservar Online",
                               ],
                             }),
                             b.jsxs("button", {
@@ -27148,7 +27148,7 @@ function S4() {
                     variants: l,
                     className: "text-muted-foreground max-w-xl mx-auto text-sm",
                     children:
-                      "Fades, diseños, barbas y color. Reserva online en Booksy.",
+                      "Fades, diseños, barbas y color. Reserva tu cita online.",
                   }),
                 ],
               }),
@@ -27626,7 +27626,7 @@ function S4() {
                       variants: l,
                       className: "text-muted-foreground mb-10",
                       children:
-                        "Reserva online en segundos a través de Booksy con calendario en tiempo real, o escríbenos por WhatsApp y te atendemos personalmente.",
+                        "Reserva tu cita online en segundos en Setmore con calendario en tiempo real y confirmación inmediata.",
                     }),
                     b.jsxs("div", {
                       className: "space-y-4",
@@ -27653,7 +27653,7 @@ function S4() {
                                     b.jsx("div", {
                                       className:
                                         "text-lg md:text-xl font-serif",
-                                      children: "Reservar en Booksy",
+                                      children: "Reservar Cita Online",
                                     }),
                                   ],
                                 }),
@@ -28058,7 +28058,7 @@ function S4() {
                     target: "_blank",
                     rel: "noopener noreferrer",
                     className: "text-primary hover:underline",
-                    children: "reservar online en Booksy",
+                    children: "reservar cita online",
                   }),
                 ],
               }),
@@ -28089,7 +28089,7 @@ function S4() {
                       target: "_blank",
                       rel: "noopener noreferrer",
                       className: "hover:text-primary transition-colors",
-                      children: "Reservar en Booksy"
+                      children: "Reservar Online"
                     })
                   ]
                 })
