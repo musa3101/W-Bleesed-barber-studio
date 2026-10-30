@@ -50,7 +50,7 @@
     <script type="module" crossorigin src="./assets/index-gynIhAn1.js?v=8"></script>
     <script type="module" src="./supabase-integration.js?v=2"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-nloeWNVQ.css">
-    <link rel="stylesheet" href="./assets/redesign.css?v=4">
+    <link rel="stylesheet" href="./assets/redesign.css?v=5">
 
     <!-- Structured Data for Local Business SEO -->
     <script type="application/ld+json">
@@ -116,11 +116,11 @@
             <div style="display:flex; flex-direction:column; gap:1.25rem;">
               <div>
                 <strong style="color:#FFFFFF; font-size:0.95rem; display:block; margin-bottom:0.25rem;">1. ¿Es necesario reservar cita antes de ir?</strong>
-                <p style="margin:0;">Aunque siempre recomendamos reservar de forma anticipada a través de nuestro portal de <strong>Booksy</strong> o por <strong>WhatsApp</strong> para garantizar que el Maestro Gustavo te atienda a la hora deseada sin esperas, también puedes acudir directamente al estudio y te daremos paso si existe algún hueco libre en la agenda.</p>
+                <p style="margin:0;">Aunque siempre recomendamos reservar de forma anticipada a través de nuestro portal de <strong>Reserva Online directa</strong> o por <strong>WhatsApp</strong> para garantizar que el Maestro Gustavo te atienda a la hora deseada sin esperas, también puedes acudir directamente al estudio y te daremos paso si existe algún hueco libre en la agenda.</p>
               </div>
               <div>
                 <strong style="color:#FFFFFF; font-size:0.95rem; display:block; margin-bottom:0.25rem;">2. ¿Qué métodos de pago tenéis disponibles?</strong>
-                <p style="margin:0;">Para tu total comodidad, en el local aceptamos pagos en <strong>efectivo</strong> y cobros con <strong>tarjetas de crédito y débito</strong> (Visa, Mastercard, etc.).</p>
+                <p style="margin:0;">Para tu total comodidad, en el local aceptamos pagos en <strong>efectivo</strong> y cobros con <strong>tarjetas de crédito y débito</strong> (Visa, Mastercard, etc.). Al reservar online puedes indicar tu método de preferencia.</p>
               </div>
               <div>
                 <strong style="color:#FFFFFF; font-size:0.95rem; display:block; margin-bottom:0.25rem;">3. ¿Dónde está ubicado el estudio y cuál es su horario?</strong>
@@ -128,7 +128,7 @@
               </div>
               <div>
                 <strong style="color:#FFFFFF; font-size:0.95rem; display:block; margin-bottom:0.25rem;">4. ¿Con cuánta antelación debo cancelar o modificar mi cita?</strong>
-                <p style="margin:0;">Si por cualquier imprevisto necesitas cambiar o anular tu cita, te solicitamos que lo hagas con un mínimo de <strong>2 horas de antelación</strong>, ya sea desde la app de Booksy o escribiéndonos directamente. Esto nos permite reorganizar el día y ofrecer ese espacio a otro cliente.</p>
+                <p style="margin:0;">Si por cualquier imprevisto necesitas cambiar o anular tu cita, te solicitamos que lo hagas con un mínimo de <strong>1 hora de antelación</strong>, ya sea desde el enlace de confirmación recibido por email o escribiéndonos directamente por WhatsApp. Esto nos permite reorganizar el día y ofrecer ese espacio a otro cliente.</p>
               </div>
             </div>
           `
@@ -166,6 +166,36 @@
         }
       };
 
+      // Setmore Online Booking Modal Controls
+      window.openSetmoreModal = () => {
+        const modal = document.getElementById('setmore-modal-root');
+        const iframe = document.getElementById('setmore-booking-iframe');
+        const loader = document.getElementById('setmore-iframe-loader');
+        if (modal && iframe) {
+          if (!iframe.src || iframe.src === 'about:blank' || iframe.src.includes('localhost') || iframe.src.includes('pages.dev')) {
+            if (loader) loader.style.display = 'flex';
+            iframe.src = iframe.dataset.src || 'https://blessedbarberpalma.setmore.com';
+          }
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      window.closeSetmoreModal = () => {
+        const modal = document.getElementById('setmore-modal-root');
+        if (modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      };
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (typeof closeSetmoreModal === 'function') closeSetmoreModal();
+          if (typeof closeLegalModal === 'function') closeLegalModal();
+        }
+      });
+
       function init() {
         // --- Utility ---
         const debounce = (func, wait) => {
@@ -190,6 +220,38 @@
                 }, 200);
               }
             }
+          }
+        }, true);
+
+        // --- Intercept Online Booking Clicks -> Open Setmore Modal ---
+        document.addEventListener('click', (e) => {
+          const btn = e.target.closest('a, button');
+          if (!btn) return;
+
+          // Ignore if click is inside the Setmore modal itself
+          if (btn.closest('#setmore-modal-root')) return;
+
+          // Check if WhatsApp action -> allow natural WhatsApp flow
+          const text = (btn.textContent || '').trim().toUpperCase();
+          const href = (btn.getAttribute('href') || '').toLowerCase();
+          if (text.includes('WHATSAPP') || href.includes('wa.me') || href.includes('whatsapp.com')) {
+            return;
+          }
+
+          // Check if it is an online booking trigger
+          const isBookingTrigger = 
+            href.includes('booksy.com') ||
+            href.includes('setmore.com') ||
+            text === 'RESERVAR' ||
+            text === 'RESERVA ONLINE' ||
+            text.includes('RESERVAR ONLINE') ||
+            text.includes('RESERVAR EN BOOKSY') ||
+            text.includes('RESERVAR CITA');
+
+          if (isBookingTrigger) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.openSetmoreModal();
           }
         }, true);
 
@@ -435,20 +497,100 @@
             }
           }
 
-          document.querySelectorAll('a, button, h2, h3, span').forEach(el => {
+          document.querySelectorAll('a, button, h2, h3, span, p, div').forEach(el => {
             const txt = el.textContent.trim();
             if (txt === 'Filosofía' || txt === 'FILOSOFÍA' || txt === 'Nuestra Esencia' || txt === 'NUESTRA ESENCIA') {
               el.textContent = 'Sobre nosotros';
               el.classList.add('font-serif');
             }
+            if (el.children.length === 0) {
+              if (txt.includes('Reservar en Booksy') || txt.includes('reservar online en Booksy')) {
+                el.textContent = 'RESERVAR ONLINE (CITA DIRECTA)';
+              } else if (txt.includes('Reserva online en Booksy.')) {
+                el.textContent = 'Reserva tu cita online en tiempo real.';
+              } else if (txt.includes('Reserva online en segundos a través de Booksy')) {
+                el.textContent = 'Reserva tu cita online en segundos con confirmación inmediata, o si lo prefieres por WhatsApp.';
+              } else if (txt.includes('en Booksy') && !txt.includes('reseña')) {
+                el.textContent = txt.replace(/en Booksy/gi, 'Online');
+              }
+            }
+            if (el.tagName === 'A' && el.href && el.href.includes('booksy.com')) {
+              el.href = 'https://blessedbarberpalma.setmore.com';
+              el.setAttribute('target', '_blank');
+              el.setAttribute('rel', 'noopener noreferrer');
+            }
           });
         }, 150);
+
+        // Setup interactive Gallery Category Filter & Mobile Swipe Hint (uipro-max)
+        const setupGalleryInteractions = () => {
+          const galeriaSection = document.querySelector('#galeria');
+          if (!galeriaSection) return;
+          const grid = galeriaSection.querySelector('.grid');
+          if (!grid) return;
+
+          if (!document.getElementById('gallery-filter-bar')) {
+            const filterBar = document.createElement('div');
+            filterBar.id = 'gallery-filter-bar';
+            filterBar.className = 'flex items-center justify-center gap-2 mb-4 px-4 flex-wrap z-10 relative';
+            filterBar.innerHTML = `
+              <button type="button" data-filter="all" class="gallery-filter-btn active-filter px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Todos</button>
+              <button type="button" data-filter="video" class="gallery-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Vídeos 🎬</button>
+              <button type="button" data-filter="photo" class="gallery-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Cortes ✂️</button>
+            `;
+
+            const swipeHint = document.createElement('div');
+            swipeHint.id = 'gallery-swipe-hint';
+            swipeHint.className = 'md:hidden flex items-center justify-center gap-1.5 text-[11px] text-white/40 uppercase tracking-widest mb-3 select-none pointer-events-none';
+            swipeHint.innerHTML = '<span>‹</span> Desliza para explorar <span>›</span>';
+
+            grid.parentNode.insertBefore(filterBar, grid);
+            grid.parentNode.insertBefore(swipeHint, grid);
+
+            filterBar.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+              btn.addEventListener('click', () => {
+                filterBar.querySelectorAll('.gallery-filter-btn').forEach(b => b.classList.remove('active-filter'));
+                btn.classList.add('active-filter');
+                const filter = btn.dataset.filter;
+                Array.from(grid.children).forEach(card => {
+                  const isVideo = card.querySelector('video') !== null;
+                  if (filter === 'all') {
+                    card.style.display = '';
+                  } else if (filter === 'video') {
+                    card.style.display = isVideo ? '' : 'none';
+                  } else if (filter === 'photo') {
+                    card.style.display = !isVideo ? '' : 'none';
+                  }
+                });
+                grid.scrollTo({ left: 0, behavior: 'smooth' });
+              });
+            });
+          }
+        };
+
+        // Setup Reviews Mobile Swipe Hint (uipro-max)
+        const setupReviewsInteractions = () => {
+          const resenasSection = document.querySelector('#resenas');
+          if (!resenasSection) return;
+          const grid = resenasSection.querySelector('.grid');
+          if (!grid) return;
+
+          if (!document.getElementById('reviews-swipe-hint')) {
+            const swipeHint = document.createElement('div');
+            swipeHint.id = 'reviews-swipe-hint';
+            swipeHint.className = 'md:hidden flex items-center justify-center gap-1.5 text-[11px] text-[#D4AF37]/70 uppercase tracking-widest mb-3 select-none pointer-events-none';
+            swipeHint.innerHTML = '<span>‹</span> Desliza para leer opiniones <span>›</span>';
+            grid.parentNode.insertBefore(swipeHint, grid);
+          }
+        };
 
         // Combined Observer for Performance
         const runAll = () => {
           observeElements();
           handleGallery();
           optimizeProduction();
+          setupGalleryInteractions();
+          setupReviewsInteractions();
         };
 
         runAll();
@@ -471,6 +613,55 @@
         <h3 class="mynext-legal-title" id="mynext-legal-title-text"></h3>
         <div class="mynext-legal-body" id="mynext-legal-body-text"></div>
       </div>
+    </div>
+
+    <!-- Setmore Booking Engine Modal (Demo / Staging) -->
+    <div id="setmore-modal-root" class="setmore-modal" onclick="if(event.target === this) closeSetmoreModal()">
+      <div class="setmore-modal-container">
+        <!-- Modal Top Bar -->
+        <div class="setmore-modal-header">
+          <div class="setmore-modal-brand">
+            <span class="setmore-pulse-dot"></span>
+            <div>
+              <div class="setmore-modal-title">RESERVA TU CITA ONLINE</div>
+              <div class="setmore-modal-sub">Blessed Barber Studio · Confirmación Inmediata</div>
+            </div>
+          </div>
+          <div class="setmore-modal-actions">
+            <a href="https://blessedbarberpalma.setmore.com" target="_blank" rel="noopener noreferrer" class="setmore-external-btn" title="Abrir en pantalla completa">
+              <span>Pantalla completa</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button class="setmore-modal-close" onclick="closeSetmoreModal()" aria-label="Cerrar">✕</button>
+          </div>
+        </div>
+        
+        <!-- Iframe Body with Loading State -->
+        <div class="setmore-iframe-wrapper">
+          <div id="setmore-iframe-loader" class="setmore-loader">
+            <div class="setmore-spinner"></div>
+            <p>Cargando agenda en tiempo real...</p>
+          </div>
+          <iframe 
+            id="setmore-booking-iframe"
+            title="Agenda de Reservas Blessed Barber Studio"
+            src=""
+            data-src="https://blessedbarberpalma.setmore.com"
+            allow="camera; microphone; payment; geolocation"
+            onload="const l = document.getElementById('setmore-iframe-loader'); if(l) l.style.display='none';">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Staging Indicator Pill -->
+    <div id="demo-staging-badge-root" class="demo-staging-badge">
+      <span style="font-size: 1rem;">💈</span>
+      <div>
+        <strong>ENTORNO DEMO</strong> · Reservas Online Activas
+      </div>
+      <a href="https://blessedstudio.pages.dev" target="_blank" rel="noopener noreferrer" title="Ir a la web de producción oficial">Web actual ↗</a>
+      <button onclick="document.getElementById('demo-staging-badge-root').remove()" aria-label="Ocultar aviso">✕</button>
     </div>
   </body>
 </html>

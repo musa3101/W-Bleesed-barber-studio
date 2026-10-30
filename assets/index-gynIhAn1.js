@@ -26547,7 +26547,7 @@ const ZS = w.forwardRef(({ className: e, ...i }, s) =>
   }),
 );
 ZS.displayName = ec.displayName;
-const lr = "https://booksy.com/es-es/dl/show-business/55499",
+const lr = "https://blessedbarberpalma.setmore.com",
   m4 = "34631935439",
   F0 = "+34 631 935 439",
   WS = (e) => `https://wa.me/${m4}?text=${encodeURIComponent(e)}`,
