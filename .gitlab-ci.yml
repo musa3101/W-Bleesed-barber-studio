@@ -1,0 +1,12 @@
+stages:
+  - keep-alive
+
+supabase-ping:
+  stage: keep-alive
+  image: curlimages/curl:latest
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+  script:
+    - curl -s -f -X GET "https://felvvzeajswdpeymytvq.supabase.co/auth/v1/health" -H "apikey: sb_publishable_HH1jzZRRhJrgXWzyAQVRUA_UN_kHPQh" || true
+    - echo "Ping de salud completado a Supabase."

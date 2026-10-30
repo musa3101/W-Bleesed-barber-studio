@@ -1,0 +1,769 @@
+[
+  {
+    "id": "TC001",
+    "title": "Launch WhatsApp with booking details prefilled",
+    "description": "A client can complete the booking flow and open WhatsApp with the selected service and barber included in the message.",
+    "category": "Services Catalog and Price Display",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the services section"
+      },
+      {
+        "type": "action",
+        "description": "Select a service card"
+      },
+      {
+        "type": "action",
+        "description": "Choose a barber in the booking modal"
+      },
+      {
+        "type": "action",
+        "description": "Continue the booking to WhatsApp"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify WhatsApp opens with a prefilled booking message"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected booking details are included in the message"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Book a service with a barber and start WhatsApp",
+    "description": "A visitor can select a service, choose a barber, and launch WhatsApp with the booking details prefilled.",
+    "category": "Barber Selection and WhatsApp Booking Flow",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the services catalog"
+      },
+      {
+        "type": "action",
+        "description": "Click a service card"
+      },
+      {
+        "type": "action",
+        "description": "Select a barber from the booking modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a WhatsApp booking action is launched with a prefilled booking message"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Open booking from a service card",
+    "description": "A visitor can choose a service card and open the booking modal with that service already selected.",
+    "category": "Services Catalog and Price Display",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the services section"
+      },
+      {
+        "type": "action",
+        "description": "Select a service card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the booking modal is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected service is prefilled in the booking modal"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Reserve a service from the catalog action",
+    "description": "A visitor can use the reserve action on a service card to enter booking with the chosen service selected.",
+    "category": "Services Catalog and Price Display",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the services section"
+      },
+      {
+        "type": "action",
+        "description": "Click the reserve action from a service card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the booking modal is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected service is prefilled in the booking modal"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Complete barber selection in the booking modal",
+    "description": "A client can choose a barber after selecting a service and the booking modal reflects the chosen barber before continuing.",
+    "category": "Services Catalog and Price Display",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the services section"
+      },
+      {
+        "type": "action",
+        "description": "Select a service card"
+      },
+      {
+        "type": "action",
+        "description": "Choose a barber in the booking modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the booking modal shows the selected barber"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the booking details remain ready to continue"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Browse services and prices",
+    "description": "A visitor can review the service catalog and see the available services with pricing details.",
+    "category": "Services Catalog and Price Display",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the services section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the service catalog is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify service pricing information is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Review the selected service before choosing a barber",
+    "description": "A visitor can open the booking modal from a service card and see the chosen service reflected before starting booking.",
+    "category": "Barber Selection and WhatsApp Booking Flow",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the services catalog"
+      },
+      {
+        "type": "action",
+        "description": "Click a service card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the booking modal is open"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected service is shown in the booking modal"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "View the hero message and booking entry point",
+    "description": "A visitor sees the hero introduction and can start the booking journey from the primary call to action.",
+    "category": "Hero Section and Booking Entry Point",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the hero section is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the booking entry point is available"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Navigate to a section from the header",
+    "description": "A visitor can use the desktop navigation to jump to a main section and the page scrolls to that content.",
+    "category": "Navigation and Anchor Scrolling",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link for the services section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the services section is in view"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the page content has moved to the selected section"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Browse the gallery and see portfolio media appear in view",
+    "description": "A visitor can scroll to the gallery and see portfolio media load as the section comes into view.",
+    "category": "Interactive Gallery and Video Autoplay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the gallery section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify portfolio media cards are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify at least one video begins playing when it enters the viewport"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Use the mobile drawer to reach a section",
+    "description": "A mobile user can open the drawer menu, choose a section, and the drawer closes while the page scrolls to the selected content.",
+    "category": "Navigation and Anchor Scrolling",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the mobile drawer navigation"
+      },
+      {
+        "type": "action",
+        "description": "Select the link for the services section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the drawer is dismissed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the services section is in view"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Use the mobile drawer to jump to a section and dismiss it",
+    "description": "On mobile navigation, a visitor can open the drawer, jump to a section, and have the drawer dismiss after selection.",
+    "category": "Barber Selection and WhatsApp Booking Flow",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the navigation drawer"
+      },
+      {
+        "type": "action",
+        "description": "Select a section link from the drawer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the page scrolls to the selected section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the navigation drawer is closed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Explore the gallery and continue to location details",
+    "description": "A visitor can browse portfolio media, observe automatic playback behavior, and reach the studio location and hours content.",
+    "category": "Navigation and Anchor Scrolling",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the gallery section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify portfolio media cards are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Continue scrolling to the location section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the location and studio hours content is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Toggle playback on a gallery video card",
+    "description": "A visitor can select a gallery video card and control playback from the page.",
+    "category": "Interactive Gallery and Video Autoplay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the gallery section"
+      },
+      {
+        "type": "action",
+        "description": "Click a gallery video card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected video changes playback state"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC015",
+    "title": "Open the about, FAQ, and legal footer modals",
+    "description": "A visitor can open the informational footer modals and access the studio details, frequently asked questions, and legal notice.",
+    "category": "Navigation and Anchor Scrolling",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the footer area"
+      },
+      {
+        "type": "action",
+        "description": "Open the who we are modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the modal content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Close the modal"
+      },
+      {
+        "type": "action",
+        "description": "Open the FAQ modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the modal content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Close the modal"
+      },
+      {
+        "type": "action",
+        "description": "Open the legal notice modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the modal content is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC016",
+    "title": "Close the booking modal and return to browsing",
+    "description": "A visitor can dismiss the booking modal and continue using the page without being blocked.",
+    "category": "Barber Selection and WhatsApp Booking Flow",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the services catalog"
+      },
+      {
+        "type": "action",
+        "description": "Click a service card"
+      },
+      {
+        "type": "action",
+        "description": "Close the booking modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the booking modal is no longer visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the main page remains accessible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC017",
+    "title": "View studio address and hours",
+    "description": "A visitor can reach the location section and see the studio address and operating hours.",
+    "category": "Location and Map Section",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the location section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the studio address is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the operating hours are visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC018",
+    "title": "Open and close the studio information modal",
+    "description": "A visitor can open the studio information modal from the footer and dismiss it cleanly.",
+    "category": "Legal and Information Modals",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the footer link for the studio information modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the studio information modal is visible"
+      },
+      {
+        "type": "action",
+        "description": "Close the studio information modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the modal is no longer visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC019",
+    "title": "Inspect a gallery card with the preview zoom interaction",
+    "description": "A visitor can hover or tap a gallery card and see the media preview interaction on the portfolio grid.",
+    "category": "Interactive Gallery and Video Autoplay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the gallery section"
+      },
+      {
+        "type": "action",
+        "description": "Hover over a gallery card"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the gallery card preview interaction is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC020",
+    "title": "Activate map interaction",
+    "description": "A visitor can interact with the embedded map area so it becomes ready for map gestures.",
+    "category": "Location and Map Section",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the location section"
+      },
+      {
+        "type": "action",
+        "description": "Click the map area to activate interaction"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the map is interactive"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC021",
+    "title": "Open and close the FAQ modal",
+    "description": "A visitor can open the FAQ modal from the footer, review the questions, and close it.",
+    "category": "Legal and Information Modals",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the footer link for the FAQ modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the FAQ modal is visible"
+      },
+      {
+        "type": "action",
+        "description": "Close the FAQ modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the modal is no longer visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC022",
+    "title": "Open and close the legal notice modal",
+    "description": "A visitor can open the legal notice modal from the footer and dismiss it after reviewing the content.",
+    "category": "Legal and Information Modals",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the footer link for the legal notice modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the legal notice modal is visible"
+      },
+      {
+        "type": "action",
+        "description": "Close the legal notice modal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the modal is no longer visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC023",
+    "title": "Reach the location section from the page content",
+    "description": "A visitor can navigate through the single-page site and arrive at the location section without losing access to studio information.",
+    "category": "Location and Map Section",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the location section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the location section is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the studio address is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC024",
+    "title": "Continue from gallery to location and hours information",
+    "description": "A visitor can browse past the gallery and reach the studio location and hours content on the page.",
+    "category": "Interactive Gallery and Video Autoplay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the gallery section"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the location and hours section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the studio location information is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the studio hours information is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC025",
+    "title": "Read location details after browsing earlier content",
+    "description": "A visitor can browse the page and still access the studio address and hours in the location section.",
+    "category": "Location and Map Section",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to a content section above the location section"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the location section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the studio address is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the operating hours are visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC026",
+    "title": "Enable map gestures after opening the location section",
+    "description": "A visitor can open the location section and then activate the map for direct interaction.",
+    "category": "Location and Map Section",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the location section"
+      },
+      {
+        "type": "action",
+        "description": "Click the map area to activate interaction"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the map responds to user interaction"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC027",
+    "title": "See the location section after page load",
+    "description": "The page makes the location information available as part of the main single-page experience.",
+    "category": "Location and Map Section",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the location section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the location section content is displayed"
+      }
+    ],
+    "priority": "Low"
+  }
+]

@@ -1,0 +1,16 @@
+name: Supabase Keep-Alive
+
+on:
+  schedule:
+    # Ejecutar cada martes y viernes a las 06:00 UTC
+    - cron: '0 6 * * 2,5'
+  workflow_dispatch:
+
+jobs:
+  ping-supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase Health Endpoint
+        run: |
+          curl -s -f -X GET "https://felvvzeajswdpeymytvq.supabase.co/auth/v1/health"             -H "apikey: sb_publishable_HH1jzZRRhJrgXWzyAQVRUA_UN_kHPQh" || true
+          echo "Ping de salud completado a Supabase."

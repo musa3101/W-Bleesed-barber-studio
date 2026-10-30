@@ -1,5 +1,11 @@
+node_modules/
 .DS_Store
 Thumbs.db
 .vite/
 .env
 .env.*
+scratch/
+audit-screenshots/
+testsprite_tests/tmp/
+testsprite_tests/tmp/
+testsprite_tests/tmp/config.json

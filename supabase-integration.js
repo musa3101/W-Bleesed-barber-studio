@@ -178,8 +178,26 @@ function injectBarbersToModal() {
             parentContainer.classList.add('barbers-injected');
 
             // Obtener el texto del servicio elegido para el mensaje de WhatsApp
-            const subtitleEl = header.parentElement.querySelector('p') || header.parentElement.parentElement.querySelector('p');
-            const serviceText = subtitleEl ? subtitleEl.textContent.replace('Servicio: ', '').trim() : '';
+            let serviceText = '';
+            const dialog = header.closest('[role="dialog"]') || document.querySelector('.modal-booking-container');
+            if (dialog) {
+                const candidates = Array.from(dialog.querySelectorAll('p, div, span, [class*="text-muted-foreground"]'));
+                for (const el of candidates) {
+                    if (el.textContent && el.textContent.includes('Servicio:')) {
+                        serviceText = el.textContent.replace(/^.*Servicio:\s*/i, '').trim();
+                        break;
+                    }
+                }
+            }
+
+            if (!serviceText) {
+                const subtitleEl = header.parentElement.querySelector('p') || (dialog ? dialog.querySelector('p') : null);
+                if (subtitleEl && subtitleEl.textContent && subtitleEl.textContent.includes('Servicio:')) {
+                    serviceText = subtitleEl.textContent.replace(/^.*Servicio:\s*/i, '').trim();
+                } else if (subtitleEl && subtitleEl.textContent && !subtitleEl.textContent.includes('Elige')) {
+                    serviceText = subtitleEl.textContent.trim();
+                }
+            }
 
             // Limpiar los botones estáticos de React
             parentContainer.innerHTML = '';
@@ -203,14 +221,19 @@ function injectBarbersToModal() {
 
                 // Añadir el listener para enviar el WhatsApp y cerrar el modal
                 btn.addEventListener('click', () => {
-                    const msg = `Hola Blessed Studio, me gustaría hacer un ${serviceText} con el peluquero ${barber.name}.. muchas gracias.`;
+                    const msg = `Hola Blessed Studio, me gustaría reservar cita para: ${serviceText || 'un servicio de barbería'} con el barbero ${barber.name}. Muchas gracias.`;
                     const phone = "34631935439";
                     const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
                     window.open(waUrl, "_blank", "noopener,noreferrer");
 
-                    // Buscar el botón de cerrar modal (suele ser una '✕' o un botón en la esquina superior)
-                    const closeBtn = Array.from(document.querySelectorAll('button')).find(el => el.textContent === '✕');
-                    if (closeBtn) closeBtn.click();
+                    // Cerrar el modal limpiamente
+                    const closeBtn = (dialog ? dialog.querySelector('button[aria-label*="Close"], button[aria-label*="Cerrar"], button.absolute.right-4.top-4') : null) || 
+                                     Array.from(document.querySelectorAll('button')).find(el => el.textContent.trim() === '✕');
+                    if (closeBtn) {
+                        closeBtn.click();
+                    } else {
+                        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true }));
+                    }
                 });
 
                 parentContainer.appendChild(btn);

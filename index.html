@@ -234,25 +234,19 @@
 
                 const rawSrc = videoSources[i];
                 video.dataset.src = rawSrc;
+                video.src = rawSrc;
                 video.muted = true;
                 video.loop = true;
                 video.playsInline = true;
-                video.preload = 'auto';
+                video.preload = 'metadata';
                 video.setAttribute('muted', '');
                 video.setAttribute('playsinline', '');
+                video.setAttribute('preload', 'metadata');
                 
                 video.className = 'w-full h-full object-cover transition-transform duration-700';
                 video.style.width = '100%';
                 video.style.height = '100%';
                 video.style.objectFit = 'cover';
-                
-                // Preload video as Blob to ensure instantaneous playing
-                preloadVideo(rawSrc).then(blobUrl => {
-                  video.src = blobUrl;
-                  if (card.classList.contains('visible-on-screen')) {
-                    video.play().catch(e => {});
-                  }
-                });
 
                 const playVideo = () => {
                     video.play().catch(e => {});
@@ -293,6 +287,35 @@
               }
             });
 
+            // Lazy loading / precarga diferida acelerada al acercarse a la sección #galeria
+            const galeriaEl = document.querySelector('#galeria');
+            if (galeriaEl && !galeriaEl.dataset.lazyObserved) {
+              galeriaEl.dataset.lazyObserved = 'true';
+              const galeriaObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    obs.disconnect();
+                    const vCards = galeriaEl.querySelectorAll('video');
+                    vCards.forEach(v => {
+                      const vSrc = v.dataset.src || v.src;
+                      if (vSrc && !vSrc.startsWith('blob:')) {
+                        preloadVideo(vSrc).then(blobUrl => {
+                          if (blobUrl && v.src !== blobUrl) {
+                            const wasPlaying = !v.paused;
+                            v.src = blobUrl;
+                            if (wasPlaying || v.closest('.visible-on-screen')) {
+                              v.play().catch(e => {});
+                            }
+                          }
+                        });
+                      }
+                    });
+                  }
+                });
+              }, { rootMargin: '200px 0px' });
+              galeriaObserver.observe(galeriaEl);
+            }
+
             if (injectedCount > 0) window.dispatchEvent(new Event('resize'));
 
             if (cards.length >= 8) {
@@ -330,6 +353,22 @@
             if (!img.alt) img.alt = "Blessed Barber Studio — Barbería Premium";
             img.classList.add('transition-opacity', 'duration-500', 'lazy-applied');
           });
+
+          const mapSection = document.querySelector('#mapa');
+          if (mapSection && !mapSection.querySelector('a[href*="maps.google.com"]')) {
+            const textContainer = mapSection.querySelector('.container') || mapSection.firstElementChild;
+            const gmapsLink = document.createElement('a');
+            gmapsLink.href = 'https://maps.google.com/?q=Blessed+Barber+Studio+Palma';
+            gmapsLink.target = '_blank';
+            gmapsLink.rel = 'noopener noreferrer';
+            gmapsLink.className = 'mt-4 inline-flex items-center gap-2 px-4 py-2 bg-card hover:bg-muted border border-border rounded-lg text-sm transition-colors text-primary font-medium';
+            gmapsLink.textContent = 'Abrir en Google Maps ↗';
+            if (textContainer) {
+              textContainer.appendChild(gmapsLink);
+            } else {
+              mapSection.appendChild(gmapsLink);
+            }
+          }
 
           const mapContainer = document.querySelector('#mapa > div:last-child');
           if (mapContainer && !mapContainer.classList.contains('map-observed')) {

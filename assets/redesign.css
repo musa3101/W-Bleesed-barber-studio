@@ -929,6 +929,28 @@ nav .border-2.border-primary {
         padding-bottom: 0.5rem !important;
     }
 
+/* Narrow mobile screens (iPhone SE 375px, 390px): prevent brand-name collision with hamburger button */
+@media (max-width: 390px) {
+    .brand-name {
+        font-size: 0.95rem !important;
+        max-width: 195px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+    nav .brand-name {
+        font-size: 0.95rem !important;
+        max-width: 195px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+    nav a.flex.items-center {
+        min-width: 0 !important;
+        flex-shrink: 1 !important;
+    }
+}
+
     /* Reduce Floating WhatsApp Button Size */
     button[aria-label="Reservar por WhatsApp"] {
         width: 3.5rem !important;
@@ -1071,10 +1093,10 @@ nav p.absolute {
 /* =============================================
    7. MENU CLOSE BUTTON (X) REDESIGN
    ============================================= */
-/* Targets the close button in the mobile/overlay menu */
-button.absolute.right-4.top-4,
-button[aria-label*="Close"],
-button[aria-label*="Cerrar"] {
+/* Targets the close button ONLY in the mobile/overlay menu */
+#menu-mobile button.absolute.right-4.top-4,
+#menu-mobile button[aria-label*="Close"],
+#menu-mobile button[aria-label*="Cerrar"] {
     width: 42px !important;
     height: 42px !important;
     border: 1.5px solid var(--accent-red) !important;
@@ -1090,8 +1112,9 @@ button[aria-label*="Cerrar"] {
     z-index: 9999 !important;
 }
 
-button.absolute.right-4.top-4:hover,
-button[aria-label*="Close"]:hover {
+#menu-mobile button.absolute.right-4.top-4:hover,
+#menu-mobile button[aria-label*="Close"]:hover,
+#menu-mobile button[aria-label*="Cerrar"]:hover {
     background: var(--accent-red) !important;
     color: #FFFFFF !important;
     transform: rotate(90deg) scale(1.05) !important;
@@ -1100,17 +1123,18 @@ button[aria-label*="Close"]:hover {
 }
 
 /* Ensure the X icon inside is centered and properly sized */
-button.absolute.right-4.top-4 svg,
-button[aria-label*="Close"] svg {
+#menu-mobile button.absolute.right-4.top-4 svg,
+#menu-mobile button[aria-label*="Close"] svg,
+#menu-mobile button[aria-label*="Cerrar"] svg {
     width: 20px !important;
     height: 20px !important;
     stroke-width: 2.5 !important;
 }
 
 @media (max-width: 639px) {
-    button.absolute.right-4.top-4,
-    button[aria-label*="Close"],
-    button[aria-label*="Cerrar"] {
+    #menu-mobile button.absolute.right-4.top-4,
+    #menu-mobile button[aria-label*="Close"],
+    #menu-mobile button[aria-label*="Cerrar"] {
         width: 30px !important;
         height: 30px !important;
         top: 27px !important;
@@ -1118,12 +1142,57 @@ button[aria-label*="Close"] svg {
         border-radius: 6px !important;
     }
     
-    button.absolute.right-4.top-4 svg,
-    button[aria-label*="Close"] svg {
+    #menu-mobile button.absolute.right-4.top-4 svg,
+    #menu-mobile button[aria-label*="Close"] svg,
+    #menu-mobile button[aria-label*="Cerrar"] svg {
         width: 14px !important;
         height: 14px !important;
         stroke-width: 2.2 !important;
     }
+}
+
+/* Discreet, clean close button for Booking Modal (Radix Dialog) */
+.modal-booking-container button.absolute.right-4.top-4,
+.modal-booking-container button[aria-label*="Close"],
+[role="dialog"]:has(.modal-booking-container) > button.absolute,
+[role="dialog"] button.absolute.right-4.top-4:not(#menu-mobile button) {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    border: none !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: rgba(255, 255, 255, 0.65) !important;
+    border-radius: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: none !important;
+    transform: none !important;
+    z-index: 50 !important;
+    transition: all 0.2s ease !important;
+    padding: 0 !important;
+}
+
+.modal-booking-container button.absolute.right-4.top-4:hover,
+.modal-booking-container button[aria-label*="Close"]:hover,
+[role="dialog"]:has(.modal-booking-container) > button.absolute:hover,
+[role="dialog"] button.absolute.right-4.top-4:not(#menu-mobile button):hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #FFFFFF !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+.modal-booking-container button.absolute.right-4.top-4 svg,
+[role="dialog"]:has(.modal-booking-container) > button.absolute svg,
+[role="dialog"] button.absolute.right-4.top-4:not(#menu-mobile button) svg {
+    width: 16px !important;
+    height: 16px !important;
+    stroke-width: 2 !important;
 }
 
 /* Hide the WhatsApp button subtitle (Safe CSS method) */
@@ -1137,23 +1206,27 @@ button.bg-\[\#25D366\] div.opacity-80 {
 }
 
 /* =============================================
-   8. PREMIUM BOOKING MODAL BUTTONS
+   8. PREMIUM BOOKING MODAL BUTTONS & TYPOGRAPHY
    ============================================= */
 .modal-booking-btn {
     background: transparent !important;
     border: none !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     color: var(--text-primary) !important;
-    padding: 1rem 1.5rem !important;
+    padding: 0.9rem 1.25rem !important;
     width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     transform: none !important;
     box-shadow: none !important;
     border-radius: 0 !important;
     min-height: auto !important;
+    cursor: pointer !important;
+    text-align: left !important;
 }
 
 .modal-booking-btn:last-child {
@@ -1164,7 +1237,19 @@ button.bg-\[\#25D366\] div.opacity-80 {
     background: rgba(212, 175, 55, 0.08) !important; /* Subtle premium gold tint */
     border-color: rgba(212, 175, 55, 0.2) !important;
     box-shadow: none !important;
-    transform: translateX(6px) !important; /* Smooth slide-in micro-animation */
+    transform: translateX(4px) !important; /* Smooth slide-in micro-animation */
+}
+
+/* Contenedor izquierdo del botón (icono + textos) con protección de desbordamiento */
+.modal-booking-btn > div:first-child,
+.modal-booking-btn .flex.items-center.gap-3 {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    text-align: left !important;
 }
 
 /* Ensure text elements inside the button style correctly */
@@ -1184,6 +1269,26 @@ button.bg-\[\#25D366\] div.opacity-80 {
 
 .modal-booking-btn:hover div {
     color: var(--text-primary) !important;
+}
+
+/* Contenedor de precio y flecha: NUNCA se cortan y siempre alineados a la derecha */
+.modal-booking-btn > div:last-child:not(:first-child),
+.modal-booking-btn .text-primary.font-serif.text-base,
+.modal-booking-btn svg {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    text-align: right !important;
+    margin-left: auto !important;
+    padding-left: 0.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.modal-booking-btn .text-primary.font-serif.text-base {
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+    font-size: 1.05rem !important;
+    color: #FFD700 !important;
 }
 
 .modal-booking-btn:hover .text-primary {
@@ -1212,22 +1317,134 @@ button.bg-\[\#25D366\] div.opacity-80 {
 }
 
 /* =============================================
-   9. PREMIUM BOOKING MODAL CONTAINER MOBILE OPTIMIZATION
+   9. PREMIUM BOOKING MODAL CONTAINER & RESPONSIVE LAYOUT
    ============================================= */
+/* Full responsive en móvil (iPhone SE 375px, 390px, etc.) */
 .modal-booking-container {
-    width: 92% !important;
+    box-sizing: border-box !important;
+    width: 94% !important;
     max-width: 480px !important;
-    border-radius: 12px !important;
+    min-width: 0 !important;
+    border-radius: 14px !important;
     overflow: hidden !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     background: #121212 !important; /* Premium deep dark card background */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 0, 0, 0.5) !important;
 }
 
-@media (min-width: 640px) {
+.modal-booking-container,
+.modal-booking-container * {
+    box-sizing: border-box !important;
+}
+
+.modal-booking-container .px-2.py-2,
+.modal-booking-container [class*="overflow-y-auto"] > div {
+    min-width: 0 !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+}
+
+/* Tipografía de títulos del modal: anular uppercase y letter-spacing excesivo para evitar truncamiento */
+.modal-booking-container h2,
+.modal-booking-container h3,
+[role="dialog"] h2,
+.modal-booking-container [class*="font-serif"].text-xl,
+.modal-booking-container [class*="font-serif"].text-lg {
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+    font-weight: 700 !important;
+}
+
+.modal-booking-container p,
+.modal-booking-container .text-muted-foreground {
+    letter-spacing: 0.01em !important;
+}
+
+/* Botón 'Volver a servicios': enlace elegante, sin fondo rojo chillón ni min-height de 48px */
+.modal-booking-container button[class*="hover:underline"],
+.modal-booking-container .border-b button:not(.absolute),
+.modal-booking-container button.text-xs.text-primary {
+    min-height: 0 !important;
+    min-width: 0 !important;
+    height: auto !important;
+    width: auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+    color: #25D366 !important; /* Verde discreto y elegante acorde al canal WhatsApp */
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    margin-bottom: 0.35rem !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease, opacity 0.2s ease !important;
+    line-height: 1.2 !important;
+}
+
+.modal-booking-container button[class*="hover:underline"]:hover,
+.modal-booking-container .border-b button:not(.absolute):hover,
+.modal-booking-container button.text-xs.text-primary:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #4ade80 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    text-decoration: underline !important;
+    opacity: 0.95 !important;
+}
+
+.modal-booking-container button[class*="hover:underline"]:active,
+.modal-booking-container .border-b button:not(.absolute):active,
+.modal-booking-container button.text-xs.text-primary:active {
+    background: transparent !important;
+    background-color: transparent !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Desktop layout (@media min-width: 768px): ampliación a 700px con layout de 2 columnas de servicios */
+@media (min-width: 768px) {
     .modal-booking-container {
-        width: 100% !important;
-        max-width: 480px !important;
+        width: 90% !important;
+        max-width: 700px !important;
         border-radius: 16px !important;
+    }
+
+    .modal-booking-container .px-2.py-2,
+    .modal-booking-container [class*="overflow-y-auto"] > div {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+        padding: 12px !important;
+    }
+
+    .modal-booking-container .modal-booking-btn {
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 8px !important;
+        margin: 0 !important;
+        background: rgba(255, 255, 255, 0.02) !important;
+        padding: 0.85rem 1rem !important;
+    }
+
+    .modal-booking-container .modal-booking-btn:hover {
+        background: rgba(212, 175, 55, 0.08) !important;
+        border-color: rgba(212, 175, 55, 0.25) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .modal-booking-container .modal-booking-btn:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
 }
 
